@@ -1,4 +1,4 @@
-const sampleModel = require('../model/sampleModel')
+const sampleModel = require('../models/sampleModel')
 const mongoose = require('mongoose')
 
 const sample_get = (req, res) => {
