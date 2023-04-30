@@ -14,10 +14,19 @@ app.use(express.json())
 app.use('/api/sample', sampleRoute)
 
 
-//listen for requests
+//connect to DB and listen for requests
 const port = process.env.PORT || 5000
+const dbURI = process.env.MONGO_URI
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-})
+mongoose.connect(dbURI)
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Connected to DB and listening for requests on port ${port}`)
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+
 
