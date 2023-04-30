@@ -5,21 +5,27 @@ header {
     display: flex;
     justify-content: center;
 
-    .container {
+    .container-navbar {
         display: flex;
         align-items: center;
+        justify-content: center;
         width: 100%;
         padding: 0 50px;    
         height: 80px;
         z-index: 100;
+        gap: 1rem;
         position: relative;
-        max-width: 1100px;
+        max-width: 1200px;
 
-        h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #000;
-            padding: 0 100px 0 0;
+        & a:first-child {
+            position: absolute;
+            left: 5%;
+            h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #000;
+                margin: 0 100px 0 0;
+            }
         }
 
         h3 {
@@ -29,16 +35,12 @@ header {
         }
         a {
             text-decoration: none;
+            :hover {
+                text-decoration: underline;
+                color:rgb(33, 0, 86)
+            }
         }
 
-        .spacer {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: flex-end;
-            gap: 1rem;
-            padding: 0 auto;
-        }
     }
 
 }

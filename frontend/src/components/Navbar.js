@@ -5,11 +5,10 @@ import './Navbar.scss'
 const Navbar = function ( {links} ) {
     return (
     <header>
-        <div className='container'>
+        <div className='container-navbar'>
             <Link to='/'>
                 <h1>Home</h1>
             </Link>
-            <div className="spacer">
             {
                 links.map((link) => (
                     <Link to={link.path}>
@@ -17,7 +16,6 @@ const Navbar = function ( {links} ) {
                     </Link>
                 ))
             }
-            </div>
         </div>
       </header>
     )

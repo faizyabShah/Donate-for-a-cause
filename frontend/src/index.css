@@ -6,3 +6,7 @@
     box-sizing: border-box;
     font-family: "HK Grotesk", sans-serif;
 }
+
+#root {
+    height: 96vh;
+}
