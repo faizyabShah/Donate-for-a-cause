@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Navbar />
+        <Navbar links={[{path: '/about', name: 'About'}, {path: './login', name: 'Login'}]} />
         <div className='pages'>
           <Routes>
             <Route path='/' element={<Home />} />

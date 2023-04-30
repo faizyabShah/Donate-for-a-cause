@@ -1,0 +1,44 @@
+header {
+    
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0 50px;    
+        height: 80px;
+        z-index: 100;
+        position: relative;
+        max-width: 1100px;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            padding: 0 100px 0 0;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #000;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        .spacer {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding: 0 auto;
+        }
+    }
+
+}
