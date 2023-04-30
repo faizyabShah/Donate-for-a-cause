@@ -22,3 +22,7 @@ export const login = function (formData, dispatch) {
     dispatch({type: 'LOGIN', payload: {user: formData.username, token: "token"}})
 
 }
+
+export const logout = function (dispatch) {
+    dispatch({type: 'LOGOUT'})
+}
