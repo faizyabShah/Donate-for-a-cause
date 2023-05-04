@@ -1,75 +1,36 @@
-const {User} = require('../models/userModel')
+const { User } = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
-const getUsers = async(req, res) => {
-    const users = await User.find({})
-    res.status(200).json(users)
-}
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET_KEY, {
+    expiresIn: "2h",
+  });
+};
 
-const getUser = async(req, res) => {
-    const {id} = req.params
-    console.log(id)
-    const user = await User.findById(id)
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
-    if(!user){
-        res.status(404).json({msg: 'User not found'})
-    }
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
 
-    res.status(200).json(user)
-}
+    res.status(200).json({ email, token });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
 
-const createUser = async(req, res) => {
-    const {id,name,contact,location,email,password} = req.body
+const signupUser = async (req, res) => {
+  const { name, contact, location, email, password } = req.body;
 
-    try{
-        const user = await User.create({id,name,contact,location,email,password})
-        res.status(201).json({user})
+  try {
+    const user = await User.signup(name, contact, location, email, password);
+    const token = createToken(user._id);
 
-    } catch(err) {
-        console.log(err)
-    }
-}
+    res.status(201).json({ email, token });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
 
-const deleteUser = async(req, res) => {
-    const {id}= req.params
-
-    try {
-        User.findByIdAndDelete({_id:id})
-        res.status(200).json({msg: 'User deleted successfully'})
-    } catch(err) {
-        return res.status(404).json({msg: 'User not found'})
-    }
-}
-
-const updateUser = async(req, res) => {
-    const {id,name,contact,location,email,password} = req.body
-
-    let user;
-    try {
-        //find user from database
-        user = await User.findById(id)        
-    }
-    catch(err) {
-        return res.status(404).json({msg: 'User not found'})
-    }
-
-    try {
-    //update user
-        user.name = name || user.name;
-        user.contact = contact || user.contact;
-        user.location = location || user.location;
-        user.email = email || user.email;
-        user.password = password || user; //encrypt password
-    
-        await user.save()
-
-    } catch(err) {
-        console.log(err)
-        return res.status(500).json({msg: 'Incorrect data'});
-    }
-
-    res.status(200).json({user})
-}
-
-module.exports = {
-    getUser,getUsers,createUser,deleteUser,updateUser
-}
+module.exports = { loginUser, signupUser };
