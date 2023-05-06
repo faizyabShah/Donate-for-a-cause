@@ -1,47 +1,66 @@
-import { useState } from 'react'
-import { useUserContext } from '../hooks/userContextHook'
-import { login } from '../actions/user'
-import { useNavigate } from 'react-router-dom'
-
-
+import { useEffect, useState } from "react";
+import { useUserContext } from "../hooks/userContextHook";
+import { login } from "../actions/user";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  let [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-    let [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
+  const { isLoading, error, dispatch } = useUserContext();
 
-    const { dispatch } = useUserContext()
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  useEffect(() => {
+    dispatch({ type: "RESET" });
+    return () => {};
+  }, []);
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        login(formData, dispatch)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(formData, dispatch);
 
+    setFormData({
+      email: "",
+      password: "",
+    });
 
-        setFormData({
-            username: '',
-            password: ''
-        })
-
-        
-        navigate('/') 
+    if (!error) {
+      navigate("/");
     }
+  };
 
   return (
     <div className="login">
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username: </label>
-            <input type="text" id="username" name="username" value={formData.username} onChange={(e) => setFormData({...formData, username: e.target.value})} />
-            <label htmlFor="password">Password: </label>
-            <input type="password" id="password" name="password" value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} />
-            <button type="submit">Login</button>
-        </form>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">email: </label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+        />
+        <button disabled={isLoading} type="submit">
+          Login
+        </button>
+        {error ? <p>{error}</p> : null}
+      </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

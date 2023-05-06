@@ -1,19 +1,34 @@
 import "./Register.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUserContext } from "../hooks/userContextHook";
+import { signup } from "../actions/user";
+import { useNavigate } from "react-router-dom";
 
 const Register = function () {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [contact, setContact] = useState("");
-  const [location, setLocation] = useState("");
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    password: "",
+    contact: "",
+    location: "",
+    email: "",
+  });
+
+  const navigate = useNavigate();
+
+  const { error, isLoading, dispatch } = useUserContext();
+
+  useEffect(() => {
+    dispatch({ type: "RESET" });
+    return () => {};
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = { name, password, contact, location, email };
-
-    console.log(user);
+    await signup(formData, dispatch);
+    if (!error) {
+      navigate("/");
+    }
   };
 
   return (
@@ -26,8 +41,8 @@ const Register = function () {
             className="form-control"
             id="name"
             placeholder="Enter name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </div>
 
@@ -38,8 +53,10 @@ const Register = function () {
             className="form-control"
             id="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
           />
         </div>
 
@@ -50,8 +67,10 @@ const Register = function () {
             className="form-control"
             id="contact"
             placeholder="Enter contact"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
+            value={formData.contact}
+            onChange={(e) =>
+              setFormData({ ...formData, contact: e.target.value })
+            }
           />
         </div>
 
@@ -62,8 +81,10 @@ const Register = function () {
             className="form-control"
             id="location"
             placeholder="Enter location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            value={formData.location}
+            onChange={(e) =>
+              setFormData({ ...formData, location: e.target.value })
+            }
           />
         </div>
 
@@ -74,14 +95,18 @@ const Register = function () {
             className="form-control"
             id="email"
             placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button disabled={isLoading} type="submit" className="btn btn-primary">
           Register
         </button>
+
+        {error ? <p>{error}</p> : null}
       </form>
     </div>
   );

@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "LOGIN":
+        console.log("here");
         return {
           ...state,
           user: action.payload.user,
@@ -40,6 +41,12 @@ export const UserProvider = ({ children }) => {
         return {
           ...state,
           error: action.payload.error,
+          isLoading: false,
+        };
+      case "RESET":
+        return {
+          ...state,
+          error: null,
           isLoading: false,
         };
       default:

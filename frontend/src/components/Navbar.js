@@ -3,8 +3,6 @@ import "./Navbar.scss";
 import { useUserContext } from "../hooks/userContextHook";
 import { logout } from "../actions/user";
 
-import { Button } from "reactstrap";
-
 const Navbar = function ({ links }) {
   const { isLoggedIn, user, dispatch } = useUserContext();
 
@@ -29,7 +27,7 @@ const Navbar = function ({ links }) {
           )}
         </div>
         <div className="userInfo">
-          {isLoggedIn ? <h2>Welcome {user}</h2> : null}
+          {isLoggedIn ? <h3>Welcome {user.name}</h3> : null}
         </div>
       </div>
     </header>
