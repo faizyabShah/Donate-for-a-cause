@@ -27,7 +27,11 @@ const Navbar = function ({ links }) {
           )}
         </div>
         <div className="userInfo">
-          {isLoggedIn ? <h3>Welcome {user.name}</h3> : null}
+          {isLoggedIn ? (
+            <Link to="/profile">
+              <h3>{user.name}</h3>
+            </Link>
+          ) : null}
         </div>
       </div>
     </header>

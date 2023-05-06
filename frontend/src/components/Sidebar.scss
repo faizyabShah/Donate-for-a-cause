@@ -1,0 +1,35 @@
+.sidebar {
+    background-color: rgb(240, 240, 240);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        .sideItemContainer {
+            width: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            li {
+                &.active {
+                    color: rgb(67, 3, 130);
+                }
+                padding: 5px;
+                margin: 0.5rem 0;
+                text-decoration: none;
+                font-weight: bold;
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+    
+                }
+            }
+        }
+        
+    }
+}

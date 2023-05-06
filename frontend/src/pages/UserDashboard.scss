@@ -1,0 +1,13 @@
+.userDashboard {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar main";
+    height: 100%;
+}
+
+@media screen and (min-width : 1000px) {
+    .userDashboard {
+        grid-template-columns: 1fr 5fr;
+    }
+}

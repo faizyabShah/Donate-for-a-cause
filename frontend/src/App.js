@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Navvbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navvbar
+        <Navbar
           links={[
             isLoggedIn ? { path: "/user-dashboard", name: "Dashboard" } : null,
             { path: "/about", name: "About" },
