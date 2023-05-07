@@ -7,7 +7,6 @@ import UserDashboard from "./pages/UserDashboard";
 import Donate from "./pages/Donate";
 import { useUserContext } from "./hooks/userContextHook";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "reactstrap";
 import "./App.scss";
 
 function App() {
@@ -30,10 +29,11 @@ function App() {
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/login" element={<Login isUser={true} />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/user-dashboard" element={<UserDashboard />}></Route>
             <Route path="/donate" element={<Donate />}></Route>
+            <Route path="/org-login" element={<Login isUser={false} />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

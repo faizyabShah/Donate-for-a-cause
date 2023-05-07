@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useUserContext } from "../hooks/userContextHook";
 import { login } from "../actions/user";
+import { orgLogin } from "../actions/org";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ isUser }) {
   let [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +21,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(formData, dispatch);
+    if (isUser) {
+      await login(formData, dispatch);
+    } else {
+      await orgLogin({ org: formData, token: "token" }, dispatch);
+    }
 
     setFormData({
       email: "",
