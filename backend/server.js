@@ -3,6 +3,9 @@ require("dotenv").config();
 const express = require("express");
 //const sampleRoute = require("./routes/sampleRoute");
 const userRoute = require("./routes/userRoute");
+const orgRoute = require("./routes/orgRoute");
+const projRoute = require("./routes/projRoute");
+
 const mongoose = require("mongoose");
 
 //express app
@@ -20,6 +23,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/user", userRoute);
+app.use("/api/organizations", orgRoute);
+app.use("/api/projects", projRoute);
+
 
 //connect to DB and listen for requests
 const port = process.env.PORT || 5000;

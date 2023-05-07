@@ -9,7 +9,8 @@ const ProjSchema = new Schema(
         type: String,
         },
     description:{
-        type:string
+
+        type:String
     },
     cost:{
         type:Number
@@ -20,9 +21,9 @@ const ProjSchema = new Schema(
     amount_raised:{
         type:Number},
     Type:{
-        type:Number,
+        type:String,
         enum:[
-            'Zakat','Zakat-ul-Fitr','Sadaqah','Sadaqah Jariyah',
+            'Zakat','Zakat-ul-Fitr','Sadaqah','Sadaqah Jariyah', 
             'Qurbani','Waqf'
         ]},
     Audit:{
