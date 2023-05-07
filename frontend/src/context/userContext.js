@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const initialState = {
+    isOrg: false,
     user: null,
     token: null,
     isLoggedIn: false,
@@ -25,9 +26,9 @@ export const UserProvider = ({ children }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "LOGIN":
-        console.log("here");
         return {
           ...state,
+          isOrg: false,
           user: action.payload.user,
           token: action.payload.token,
           isLoggedIn: true,
@@ -37,6 +38,7 @@ export const UserProvider = ({ children }) => {
       case "LOGOUT":
         return {
           ...state,
+          isOrg: false,
           user: null,
           token: null,
           isLoggedIn: false,
@@ -57,8 +59,29 @@ export const UserProvider = ({ children }) => {
       case "RESET":
         return {
           ...state,
+          isOrg: false,
           error: null,
           isLoading: false,
+        };
+      case "ORGLOGIN":
+        return {
+          ...state,
+          isOrg: true,
+          user: action.payload.org,
+          token: action.payload.token,
+          isLoggedIn: true,
+          isLoading: false,
+          error: null,
+        };
+      case "ORGSIGNUP":
+        return {
+          ...state,
+          isOrg: true,
+          user: action.payload.org,
+          token: action.payload.token,
+          isLoggedIn: true,
+          isLoading: false,
+          error: null,
         };
       default:
         return state;

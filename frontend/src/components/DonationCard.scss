@@ -1,0 +1,38 @@
+.donationCard {
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    height: auto;
+    min-width: 30%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    &.Special {
+        width: 60%;
+        height: 100%;
+    }
+
+    .donationCardHeader {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .donationCardTitle {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      
+      .donationCardBody {
+        margin-top: 10px;
+        &.Special {
+            height: 100%;
+        }
+      
+        .donationCardAmount {
+            font-size: 16px;
+            &.Special {
+                height: 100%;
+            }
+        }
+    }
+}

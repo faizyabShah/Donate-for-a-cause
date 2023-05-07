@@ -1,0 +1,76 @@
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+  
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  
+    .projectsList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+  
+      .project {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 30%;
+        height: 350px;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  
+        .projectTitle {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 0.2rem;
+        }
+  
+        .projectDescription {
+          font-size: 1rem;
+          text-align: center;
+          margin-bottom: 0.2rem;
+        }
+  
+        .projectAmount {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 0.2rem;
+  
+          .projectAmountRequired,
+          .projectAmountCollected {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0.2rem;
+  
+            .projectAmountRequiredTitle,
+            .projectAmountCollectedTitle {
+              font-size: 0.8rem;
+              font-weight: bold;
+              color: #666;
+              text-transform: uppercase;
+              margin-bottom: 0.2rem;
+            }
+  
+            .projectAmountRequiredAmount,
+            .projectAmountCollectedAmount {
+              font-size: 1.2rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  
