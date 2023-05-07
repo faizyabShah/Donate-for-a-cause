@@ -1,15 +1,15 @@
 const express = require("express");
-
-const { loginUser, signupUser } = require("../controllers/orgController");
+const router = express.Router();
+const { signupOrg, loginOrg } = require("../controllers/orgController");
 
 router = express.Router();
 
 //login route
 
-router.post("/login", loginUser);
+router.post("/login", loginOrg);
 
 // signup route
 
-router.post("/signup", signupUser);
+router.post("/signup", signupOrg);
 
 module.exports = router;
