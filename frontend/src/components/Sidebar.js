@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Sidebar.scss";
 
-function Sidebar({ setPage }) {
+function Sidebar({ setPage, pages }) {
   const handleClick = (e) => {
-    console.log("HII");
     setPage(e.target.innerText.toLowerCase());
     e.target.classList.add("active");
     for (
@@ -25,20 +24,13 @@ function Sidebar({ setPage }) {
   return (
     <div className="sidebar">
       <ul>
-        <div className="sideItemContainer">
-          <li className="active" onClick={handleClick}>
-            Overview
-          </li>
-        </div>
-        <div className="sideItemContainer">
-          <li onClick={handleClick}> Profile</li>
-        </div>
-        <div className="sideItemContainer">
-          <li onClick={handleClick}> Donations</li>
-        </div>
-        <div className="sideItemContainer">
-          <li onClick={handleClick}> Logout</li>
-        </div>
+        {pages.map((page, i) => (
+          <div className="sideItemContainer">
+            <li className={i == 0 ? "active" : null} onClick={handleClick}>
+              {page}
+            </li>
+          </div>
+        ))}
       </ul>
     </div>
   );

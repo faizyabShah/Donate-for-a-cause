@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
+import Donate from "./pages/Donate";
 import { useUserContext } from "./hooks/userContextHook";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
@@ -17,9 +18,12 @@ function App() {
         <Navbar
           links={[
             isLoggedIn ? { path: "/user-dashboard", name: "Dashboard" } : null,
-            { path: "/about", name: "About" },
             isLoggedIn ? null : { path: "./login", name: "Login" },
             isLoggedIn ? null : { path: "./register", name: "Register" },
+            isLoggedIn
+              ? { path: "./donate", name: "Donate" }
+              : { path: "./login", name: "Donate" },
+            { path: "/about", name: "About" },
             isLoggedIn ? { path: "./logout", name: "Logout" } : null,
           ]}
         />
@@ -29,6 +33,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/user-dashboard" element={<UserDashboard />}></Route>
+            <Route path="/donate" element={<Donate />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
