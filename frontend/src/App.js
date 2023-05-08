@@ -5,23 +5,24 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
 import Donate from "./pages/Donate";
+import OrgRegister from "./pages/OrgRegister";
 import { useUserContext } from "./hooks/userContextHook";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
-  const { isLoggedIn, isUser } = useUserContext();
+  const { isLoggedIn, isOrg } = useUserContext();
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar
           links={[
-            isLoggedIn && isUser
+            isLoggedIn && !isOrg
               ? { path: "/user-dashboard", name: "Dashboard" }
               : null,
             isLoggedIn ? null : { path: "./login", name: "Login" },
             isLoggedIn ? null : { path: "./register", name: "Register" },
-            isLoggedIn & isUser ? { path: "./donate", name: "Donate" } : null,
+            isLoggedIn & !isOrg ? { path: "./donate", name: "Donate" } : null,
             { path: "/about", name: "About" },
             isLoggedIn ? { path: "./logout", name: "Logout" } : null,
           ]}
@@ -34,6 +35,7 @@ function App() {
             <Route path="/user-dashboard" element={<UserDashboard />}></Route>
             <Route path="/donate" element={<Donate />}></Route>
             <Route path="/org-login" element={<Login isUser={false} />}></Route>
+            <Route path="/org-register" element={<OrgRegister />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

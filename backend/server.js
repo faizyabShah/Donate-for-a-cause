@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/user", userRoute);
-app.use("/api/organizations", orgRoute);
+app.use("/api/organization", orgRoute);
 app.use("/api/projects", projRoute);
 
 //connect to DB and listen for requests
