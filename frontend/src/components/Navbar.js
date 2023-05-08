@@ -2,9 +2,18 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 import { useUserContext } from "../hooks/userContextHook";
 import { logout } from "../actions/user";
+import { orgLogout } from "../actions/org";
 
 const Navbar = function ({ links }) {
-  const { isLoggedIn, user, dispatch } = useUserContext();
+  const { isUser, isLoggedIn, user, dispatch } = useUserContext();
+
+  const _logout = function () {
+    if (isUser) {
+      logout(dispatch);
+    } else {
+      orgLogout(dispatch);
+    }
+  };
 
   return (
     <header>
@@ -17,7 +26,7 @@ const Navbar = function ({ links }) {
             link ? (
               <Link
                 to={link.path}
-                onClick={link.name == "Logout" ? () => logout(dispatch) : null}
+                onClick={link.name == "Logout" ? () => _logout(dispatch) : null}
               >
                 <h3>{link.name}</h3>
               </Link>

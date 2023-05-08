@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
-import { projModel } from "./projModel";
-import { User } from "./userModel";
+const bcrypt = require("bcrypt");
+const validator = require("validator");
+const { projModel } = require("./projModel");
+const { User } = require("./userModel");
 
 const OrgSchema = new mongoose.Schema(
   {
@@ -35,14 +37,14 @@ const OrgSchema = new mongoose.Schema(
     projects: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: projModel,
+        ref: "projModel",
       },
     ],
     fund: [
       {
         userID: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: User,
+          ref: "User",
         },
         amount: {
           type: Number,
@@ -71,14 +73,14 @@ OrgSchema.statics.login = async function (email, password) {
 
 OrgSchema.statics.signup = async function (
   name,
+  password,
   description,
   phone,
   location,
   email,
   picture,
   projects,
-  fund,
-  password
+  fund
 ) {
   if (!email || !password) {
     throw Error("Email and password are required");

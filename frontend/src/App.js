@@ -10,18 +10,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
-  const { isLoggedIn } = useUserContext();
+  const { isLoggedIn, isUser } = useUserContext();
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar
           links={[
-            isLoggedIn ? { path: "/user-dashboard", name: "Dashboard" } : null,
+            isLoggedIn && isUser
+              ? { path: "/user-dashboard", name: "Dashboard" }
+              : null,
             isLoggedIn ? null : { path: "./login", name: "Login" },
             isLoggedIn ? null : { path: "./register", name: "Register" },
-            isLoggedIn
-              ? { path: "./donate", name: "Donate" }
-              : { path: "./login", name: "Donate" },
+            isLoggedIn & isUser ? { path: "./donate", name: "Donate" } : null,
             { path: "/about", name: "About" },
             isLoggedIn ? { path: "./logout", name: "Logout" } : null,
           ]}
