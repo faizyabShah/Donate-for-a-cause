@@ -1,28 +1,30 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
-const {ProjModel} = require('../models/projModel');
+const {
+  createProject,
+  getProjects,
+  getProject,
+  deleteProject,
+  updateProject,
+  addDonation,
+} = require("../controllers/projController");
 
-// Create a new organization document
-router.post('/create', async (req, res) => {
-    const { name, description, cost, donations, amount_raised,Type,Audit,Picture,organization} = req.body;
+// get all projects
+router.get("/", getProjects);
 
-    try {
-      const proj = await ProjModel.create({
-        name,
-        description,
-        cost,
-        donations,
-        amount_raised,
-        Type,
-        Audit,
-        Picture,
-        organization
-      });
-      res.status(201).json({ proj });
-    } catch (err) {
-      console.log(err);
-    }
-});
+// get a project by id
+router.get("/:id", getProject);
+
+// create a project
+router.post("/", createProject);
+
+// delete a project
+router.post("/delete/:id", deleteProject);
+
+// update a project
+router.post("/update", updateProject);
+
+// add a donation
+router.post("/donate", addDonation);
 
 module.exports = router;
