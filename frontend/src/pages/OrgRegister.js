@@ -28,7 +28,7 @@ const OrgRegister = function () {
     e.preventDefault();
 
     await orgSignup(formData, dispatch);
-    if (!error) {
+    if (error != null) {
       navigate("/");
     }
   };

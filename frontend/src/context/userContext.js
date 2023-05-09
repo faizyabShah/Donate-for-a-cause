@@ -59,7 +59,6 @@ export const UserProvider = ({ children }) => {
       case "RESET":
         return {
           ...state,
-          isOrg: false,
           error: null,
           isLoading: false,
         };
