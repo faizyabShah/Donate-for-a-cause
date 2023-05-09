@@ -92,7 +92,7 @@ const updateProject = async (req, res) => {
 };
 
 const addDonation = async (req, res) => {
-  const { id, amount } = req.body;
+  const { user_id, id, amount } = req.body;
 
   let proj;
   try {
@@ -103,7 +103,7 @@ const addDonation = async (req, res) => {
   }
 
   try {
-    proj = await ProjModel.addDonation(id, amount);
+    proj = await ProjModel.addDonation(user_id, id, amount);
 
     res.status(200).json({ proj });
   } catch (err) {

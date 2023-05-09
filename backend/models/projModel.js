@@ -30,6 +30,7 @@ const ProjSchema = new Schema(
     ],
     amount_raised: {
       type: Number,
+      default: 0,
     },
     Type: {
       type: String,
@@ -133,11 +134,10 @@ ProjSchema.statics.updateProject = async function (
 };
 
 // write a static method to add a new expense
-ProjSchema.statics.addDonation = async function (id, user_id, amount) {
+ProjSchema.statics.addDonation = async function (user_id, id, amount) {
   if (!id || !user_id || !amount) {
     throw Error("All fields are required.");
   }
-
   const proj = await this.findOne({ _id: id });
   proj.donations.push({ user_id, amount });
   proj.amount_raised += amount;
