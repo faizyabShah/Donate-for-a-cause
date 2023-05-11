@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
-const { projModel } = require("./projModel");
 const { User } = require("./userModel");
 
 const OrgSchema = new mongoose.Schema(
@@ -34,12 +33,6 @@ const OrgSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    projects: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "projModel",
-      },
-    ],
     fund: [
       {
         userID: {

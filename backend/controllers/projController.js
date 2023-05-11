@@ -112,16 +112,21 @@ const addDonation = async (req, res) => {
 
 // create a controller to get org projects
 const getOrgProjects = async (req, res) => {
-  // console.log(req.user._id);
-  const proj = await ProjModel.find({
-    organization: req.user._id,
-  });
-
-  if (!proj) {
-    res.status(404).json({ msg: "No projects." });
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    const proj = await ProjModel.find({
+      organization: req.user._id,
+    });
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    res.status(200).json(proj);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
   }
-
-  res.status(200).json(proj);
 };
 
 module.exports = {

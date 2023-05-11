@@ -13,13 +13,13 @@ const authenticate = require("../middleware/authenticate");
 
 router.use(authenticate);
 // get all projects
-router.get("/", getProjects);
+router.get("/getallprojects", getProjects);
 
 // get a project by id
-router.get("/:id", getProject);
+router.get("/getbyid/:id", getProject);
 
 // create a project
-router.post("/", createProject);
+router.post("/addproject/", createProject);
 
 // delete a project
 router.post("/delete/:id", deleteProject);
@@ -31,6 +31,6 @@ router.post("/update", updateProject);
 router.post("/donate", addDonation);
 
 // get org projects
-router.get("/org/", getOrgProjects);
+router.get("/organization/", getOrgProjects);
 
 module.exports = router;
