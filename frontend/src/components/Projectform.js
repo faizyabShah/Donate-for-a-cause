@@ -30,14 +30,17 @@ function Projectform({ setPage }) {
     console.log(token);
     setLoading(true);
     if (token) {
-      const response = await fetch("http://localhost:5000/api/projects/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ ...formData }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/projects/addproject",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ ...formData }),
+        }
+      );
       setLoading(false);
       if (!response.ok) {
         setError("Something went wrong");

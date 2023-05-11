@@ -15,9 +15,11 @@ const ProjectCard = ({ name, description, cost, amount_raised }) => {
 const OrgProjects = ({ projects }) => {
   return (
     <div className="project-list">
-      {projects.map((project) => (
-        <ProjectCard key={project.name} {...project} />
-      ))}
+      {projects != null
+        ? projects.map((project) => (
+            <ProjectCard key={project.name} {...project} />
+          ))
+        : null}
     </div>
   );
 };
