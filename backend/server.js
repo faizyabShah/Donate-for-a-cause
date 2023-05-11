@@ -5,6 +5,7 @@ const express = require("express");
 const userRoute = require("./routes/userRoute");
 const orgRoute = require("./routes/orgRoute");
 const projRoute = require("./routes/projRoute");
+const cors = require("cors");
 
 const mongoose = require("mongoose");
 
@@ -14,14 +15,21 @@ const app = express();
 //middleware
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   next();
+// });
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use("/api/user", userRoute);
 app.use("/api/organization", orgRoute);
 app.use("/api/projects", projRoute);

@@ -26,7 +26,7 @@ const Register = function () {
     e.preventDefault();
 
     await signup(formData, dispatch);
-    if (error != null) {
+    if (error == null) {
       navigate("/");
     }
   };

@@ -53,4 +53,20 @@ const signupOrg = async (req, res) => {
   }
 };
 
-module.exports = { loginOrg, signupOrg };
+const getOrgInfo = async (req, res) => {
+  const { authorization } = req.headers;
+  const token = authorization.split(" ")[1];
+  try {
+    const { _id } = jwt.verify(token, process.env.SECRET_KEY);
+    try {
+      const org = await Organization.findById(_id);
+      res.status(200).json({ org, token });
+    } catch (err) {
+      res.status(400).send({ msg: "Invalid token for an organization." });
+    }
+  } catch (err) {
+    res.status(400).json({ msg: "Token not worth it bro." });
+  }
+};
+
+module.exports = { loginOrg, signupOrg, getOrgInfo };

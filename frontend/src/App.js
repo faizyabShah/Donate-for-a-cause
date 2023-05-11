@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
 import Donate from "./pages/Donate";
 import OrgRegister from "./pages/OrgRegister";
+import OrgDashboard from "./pages/OrgDashboard";
 import { useUserContext } from "./hooks/userContextHook";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
@@ -22,8 +23,8 @@ function App() {
               : null,
             isLoggedIn ? null : { path: "./login", name: "Login" },
             isLoggedIn ? null : { path: "./register", name: "Register" },
-            isLoggedIn & !isOrg ? { path: "./donate", name: "Donate" } : null,
-            { path: "/about", name: "About" },
+            isLoggedIn && !isOrg ? { path: "./donate", name: "Donate" } : null,
+            !isOrg ? { path: "/about", name: "About" } : null,
             isLoggedIn ? { path: "./logout", name: "Logout" } : null,
           ]}
         />
@@ -36,6 +37,7 @@ function App() {
             <Route path="/donate" element={<Donate />}></Route>
             <Route path="/org-login" element={<Login isUser={false} />}></Route>
             <Route path="/org-register" element={<OrgRegister />}></Route>
+            <Route path="/org-dashboard" element={<OrgDashboard />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

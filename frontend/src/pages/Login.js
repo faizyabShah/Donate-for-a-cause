@@ -24,7 +24,7 @@ function Login({ isUser }) {
     if (isUser) {
       await login(formData, dispatch);
     } else {
-      await orgLogin({ org: formData, token: "token" }, dispatch);
+      await orgLogin(formData, dispatch);
     }
 
     setFormData({
@@ -32,8 +32,12 @@ function Login({ isUser }) {
       password: "",
     });
 
-    if (!error) {
-      navigate("/");
+    if (error == null) {
+      if (isUser) {
+        navigate("/");
+      } else {
+        navigate("/org-dashboard");
+      }
     }
   };
 

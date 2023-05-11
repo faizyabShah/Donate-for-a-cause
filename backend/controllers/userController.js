@@ -33,4 +33,20 @@ const signupUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser };
+const getUserInfo = async (req, res) => {
+  const { authorization } = req.headers;
+  const token = authorization.split(" ")[1];
+  try {
+    const { _id } = jwt.verify(token, process.env.SECRET_KEY);
+    try {
+      const user = await User.findById(_id);
+      res.status(200).json({ user, token });
+    } catch (err) {
+      res.status(400).send({ msg: "Invalid token for a user." });
+    }
+  } catch (err) {
+    res.status(400).json({ msg: "Token not worth it bro." });
+  }
+};
+
+module.exports = { loginUser, signupUser, getUserInfo };

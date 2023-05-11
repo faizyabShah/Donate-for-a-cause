@@ -14,11 +14,31 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch({
-        type: "LOGIN",
-        payload: user,
+
+    const fetchUserData = async () => {
+      const endpoint = user.isOrg
+        ? "http://localhost:5000/api/organization/getorginfo/"
+        : "http://localhost:5000/api/user/getuserinfo/";
+      const response = await fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       });
+      if (!response.ok) {
+        localStorage.removeItem("user");
+        return;
+      }
+      const json = await response.json();
+      user.isOrg
+        ? dispatch({ type: "ORGLOGIN", payload: json })
+        : dispatch({
+            type: "LOGIN",
+            payload: json,
+          });
+    };
+
+    if (user) {
+      fetchUserData();
     }
     return () => {};
   }, []);

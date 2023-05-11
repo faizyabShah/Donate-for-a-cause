@@ -7,8 +7,11 @@ const {
   deleteProject,
   updateProject,
   addDonation,
+  getOrgProjects,
 } = require("../controllers/projController");
+const authenticate = require("../middleware/authenticate");
 
+router.use(authenticate);
 // get all projects
 router.get("/", getProjects);
 
@@ -26,5 +29,8 @@ router.post("/update", updateProject);
 
 // add a donation
 router.post("/donate", addDonation);
+
+// get org projects
+router.get("/org/", getOrgProjects);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const { ProjModel } = require("../models/projModel");
 
 // create controller functions for all the static methods in the projModel.js file
 const getProjects = async (req, res) => {
-  const projs = await ProjModel.find({});
+  const projs = await ProjModel.getAllProjects();
   res.status(200).json(projs);
 };
 
@@ -28,9 +28,8 @@ const createProject = async (req, res) => {
     Type,
     Audit,
     Picture,
-    organization,
   } = req.body;
-
+  const organization = req.user._id;
   try {
     const proj = await ProjModel.create({
       name,
@@ -111,6 +110,20 @@ const addDonation = async (req, res) => {
   }
 };
 
+// create a controller to get org projects
+const getOrgProjects = async (req, res) => {
+  // console.log(req.user._id);
+  const proj = await ProjModel.find({
+    organization: req.user._id,
+  });
+
+  if (!proj) {
+    res.status(404).json({ msg: "No projects." });
+  }
+
+  res.status(200).json(proj);
+};
+
 module.exports = {
   getProjects,
   getProject,
@@ -118,4 +131,5 @@ module.exports = {
   deleteProject,
   updateProject,
   addDonation,
+  getOrgProjects,
 };

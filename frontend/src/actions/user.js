@@ -12,7 +12,11 @@ export const login = async function (formData, dispatch) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
   }
   if (reponse.ok) {
-    localStorage.setItem("user", JSON.stringify(json));
+    json.isOrg = false;
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ token: json.token, isOrg: false })
+    );
     dispatch({
       type: "LOGIN",
       payload: json,
@@ -40,7 +44,11 @@ export const signup = async function (formData, dispatch) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
   }
   if (response.ok) {
-    localStorage.setItem("user", JSON.stringify(json));
+    json.isOrg = false;
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ token: json.token, isOrg: false })
+    );
     dispatch({
       type: "LOGIN",
       payload: json,

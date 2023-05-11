@@ -12,7 +12,11 @@ export const orgLogin = async function (formData, dispatch) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
   }
   if (reponse.ok) {
-    localStorage.setItem("org", JSON.stringify(json));
+    json.isOrg = true;
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ token: json.token, isOrg: true })
+    );
     dispatch({
       type: "ORGLOGIN",
       payload: json,
@@ -21,7 +25,7 @@ export const orgLogin = async function (formData, dispatch) {
 };
 
 export const orgLogout = function (dispatch) {
-  localStorage.removeItem("org");
+  localStorage.removeItem("user");
   dispatch({ type: "LOGOUT" });
 };
 
@@ -43,7 +47,11 @@ export const orgSignup = async function (formData, dispatch) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
   }
   if (response.ok) {
-    localStorage.setItem("org", JSON.stringify(json));
+    json.isOrg = true;
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ token: json.token, isOrg: true })
+    );
     dispatch({
       type: "ORGLOGIN",
       payload: json,

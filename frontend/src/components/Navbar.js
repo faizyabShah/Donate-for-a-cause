@@ -5,10 +5,10 @@ import { logout } from "../actions/user";
 import { orgLogout } from "../actions/org";
 
 const Navbar = function ({ links }) {
-  const { isUser, isLoggedIn, user, dispatch } = useUserContext();
+  const { isOrg, isLoggedIn, user, dispatch } = useUserContext();
 
   const _logout = function () {
-    if (isUser) {
+    if (!isOrg) {
       logout(dispatch);
     } else {
       orgLogout(dispatch);
@@ -18,7 +18,7 @@ const Navbar = function ({ links }) {
   return (
     <header>
       <div className="container-navbar">
-        <Link to="/" className="logo">
+        <Link to={isOrg ? "/org-dashboard" : "/"} className="logo">
           <h1>Home</h1>
         </Link>
         <div className="links">

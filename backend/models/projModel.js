@@ -1,7 +1,7 @@
 //project schema here
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { Organization } = require("./orgModel");
+const { Organization } = require("../models/orgModel");
 
 const ProjSchema = new Schema(
   {
@@ -152,7 +152,7 @@ ProjSchema.statics.getProjects = async function () {
 };
 
 // write a static method to get all projects of an organization
-ProjSchema.statics.getOrgProjects = async function (id) {
+ProjSchema.statics.getOrganizationProjects = async function (id) {
   const proj = await this.find({ organization: id });
   return proj;
 };
