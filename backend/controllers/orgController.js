@@ -69,4 +69,9 @@ const getOrgInfo = async (req, res) => {
   }
 };
 
-module.exports = { loginOrg, signupOrg, getOrgInfo };
+const getAllOrgs = async (req, res) => {
+  const orgs = await Organization.find();
+  res.status(200).json(orgs);
+};
+
+module.exports = { loginOrg, signupOrg, getOrgInfo, getAllOrgs };
