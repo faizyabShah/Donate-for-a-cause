@@ -10,7 +10,7 @@ function Overview() {
   const [thisMonthDonations, setThisMonthDonations] = useState(null);
   const [thisYearDonations, setThisYearDonations] = useState(null);
   const [lastFiveMonthsDonations, setLastFiveMonthsDonations] = useState(null);
-  const { token } = useUserContext();
+  const { token, user } = useUserContext();
   useEffect(() => {
     const fetchTotalDonations = async () => {
       const url = "http://localhost:5000/api/projects/userdonations";
@@ -60,12 +60,13 @@ function Overview() {
       const data = await res.json();
       setLastFiveMonthsDonations(data);
     };
-
-    fetchThisMonthDonations();
-    fetchTotalDonations();
-    fetchThisYearDonations();
-    fetchLastFiveMonthsDonations();
-  }, []);
+    if (user) {
+      fetchThisMonthDonations();
+      fetchTotalDonations();
+      fetchThisYearDonations();
+      fetchLastFiveMonthsDonations();
+    }
+  }, [user]);
 
   return (
     <div className="donationsOverview">

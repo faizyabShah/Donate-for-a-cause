@@ -49,4 +49,22 @@ const getUserInfo = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser, getUserInfo };
+const _editUser = async (req, res) => {
+  const { name, contact, location, oldPassword, password } = req.body;
+  try {
+    const user = await User.editUser(
+      req.user._id,
+      name,
+      contact,
+      location,
+      oldPassword,
+      password
+    );
+    const token = createToken(user._id);
+    res.status(201).json({ user, token });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
+module.exports = { loginUser, signupUser, getUserInfo, _editUser };

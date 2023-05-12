@@ -4,9 +4,13 @@ const {
   loginUser,
   signupUser,
   getUserInfo,
+  _editUser,
 } = require("../controllers/userController");
+const authenticate = require("../middleware/authenticate");
 
 router = express.Router();
+
+router.use("/edituser", authenticate);
 
 //login route
 
@@ -17,5 +21,7 @@ router.post("/login", loginUser);
 router.post("/signup", signupUser);
 
 router.get("/getuserinfo", getUserInfo);
+
+router.post("/edituser", _editUser);
 
 module.exports = router;

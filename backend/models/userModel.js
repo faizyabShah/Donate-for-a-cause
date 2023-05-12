@@ -88,5 +88,44 @@ UserSchema.statics.signup = async function (
   return newUser;
 };
 
+// write a static function to edit user information
+UserSchema.statics.editUser = async function (
+  id,
+  name,
+  contact,
+  location,
+  oldPassword,
+  password
+) {
+  if (!name || !contact || !location || !oldPassword || !password) {
+    throw Error("All fields are required");
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw Error("Password must be at least 8 characters long");
+  }
+
+  const user = await this.findOne({ _id: id });
+  if (user) {
+    const match = await bcrypt.compare(oldPassword, user.password);
+    if (match) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const updatedUser = await this.findByIdAndUpdate(
+        user._id,
+        {
+          name,
+          contact,
+          location,
+          password: hashedPassword,
+        },
+        { new: true }
+      );
+      return updatedUser;
+    }
+    throw Error("Incorrect password");
+  }
+  throw Error("Incorrect email");
+};
+
 let User = mongoose.model("User", UserSchema);
 module.exports = { User };
