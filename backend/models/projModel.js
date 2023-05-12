@@ -17,17 +17,24 @@ const ProjSchema = new Schema(
       type: Number,
       required: true,
     },
+
+    // add donations array with user_id and amount and timestamp
     donations: [
       {
         user_id: {
-          type: mongoose.Schema.Types.ObjectId,
+          type: Schema.Types.ObjectId,
           ref: "User",
         },
         amount: {
           type: Number,
         },
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
+
     amount_raised: {
       type: Number,
       default: 0,

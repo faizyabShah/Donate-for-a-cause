@@ -2,7 +2,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { useRef, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import "./DonationChart.scss";
-function LineGraph() {
+function LineGraph({ lastFiveMonthsDonations }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -12,35 +12,57 @@ function LineGraph() {
       canvas.style.height = "fit-content";
     }
   }, []);
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  console.log(lastFiveMonthsDonations);
   return (
-    <div className="donationChart">
-      <Line
-        data={{
-          // x-axis label values
-          labels: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ],
-          datasets: [
-            {
-              label: "# of Calories Lost",
-              // y-axis data plotting values
-              data: [200, 300, 1300, 520, 2000, 350, 150],
-              fill: false,
-              borderWidth: 2,
-              backgroundColor: "rgb(255, 99, 132)",
-              borderColor: "green",
-              responsive: true,
-            },
-          ],
-        }}
-      />
-    </div>
+    lastFiveMonthsDonations && (
+      <div className="donationChart">
+        <Line
+          data={{
+            // x-axis label values
+            labels: [
+              months[new Date().getMonth() - 4],
+              months[new Date().getMonth() - 3],
+              months[new Date().getMonth() - 2],
+              months[new Date().getMonth() - 1],
+              months[new Date().getMonth()],
+            ],
+            datasets: [
+              {
+                label: "Donations",
+                data: [
+                  lastFiveMonthsDonations[new Date().getMonth() - 4],
+                  lastFiveMonthsDonations[new Date().getMonth() - 3],
+                  lastFiveMonthsDonations[new Date().getMonth() - 2],
+                  lastFiveMonthsDonations[new Date().getMonth() - 1],
+                  lastFiveMonthsDonations[new Date().getMonth()],
+                ],
+                fill: false,
+                borderWidth: 2,
+                backgroundColor: "rgb(255, 99, 132)",
+                borderColor: "green",
+                responsive: true,
+              },
+            ],
+          }}
+        />
+      </div>
+    )
   );
 }
 

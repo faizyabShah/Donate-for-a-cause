@@ -43,7 +43,12 @@ const Donations = () => {
                       <td>{project.name}</td>
                       <td>{project.organization.name}</td>
                       <td>{donation.amount}</td>
-                      <td>{donation.timestamp}</td>
+                      <td>
+                        {
+                          //get date and time from timestamp
+                          new Date(donation.timestamp).toLocaleString()
+                        }
+                      </td>
                     </tr>
                   )
               )

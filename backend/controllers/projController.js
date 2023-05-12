@@ -1,4 +1,5 @@
 const { ProjModel } = require("../models/projModel");
+const mongoose = require("mongoose");
 
 // create controller functions for all the static methods in the projModel.js file
 const getProjects = async (req, res) => {
@@ -149,6 +150,156 @@ const getUserProjects = async (req, res) => {
   }
 };
 
+// get the sum of all donations where the user id in donations is equal to req.user._id
+const getUserDonations = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    const proj = await ProjModel.find({
+      "donations.user_id": req.user._id,
+    }).populate("organization");
+
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    const sum = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) => donation.user_id.toString() === req.user._id.toString()
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    res.status(200).json({ sum });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+// get sum of donations of user of only the current month
+const getUserDonationsMonth = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    const proj = await ProjModel.find({
+      "donations.user_id": req.user._id,
+    }).populate("organization");
+
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    const sum = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth()
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    res.status(200).json({ sum });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+// get sum of donations of a user of current year
+const getUserDonationsYear = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    const proj = await ProjModel.find({
+      "donations.user_id": req.user._id,
+    }).populate("organization");
+
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    const sum = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getFullYear() === new Date().getFullYear()
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    res.status(200).json({ sum });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+// get users donations of each of the last five months
+const getUserDonationsLastFiveMonths = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    const proj = await ProjModel.find({
+      "donations.user_id": req.user._id,
+    }).populate("organization");
+
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    const sum = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth()
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    const summ = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth() - 1
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    const summm = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth() - 2
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    const summmm = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth() - 3
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+    const summmmm = proj.reduce((acc, curr) => {
+      const donations = curr.donations.filter(
+        (donation) =>
+          donation.user_id.toString() === req.user._id.toString() &&
+          donation.timestamp.getMonth() === new Date().getMonth() - 4
+      );
+      return acc + donations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, 0);
+
+    let obj = {};
+    obj[new Date().getMonth()] = sum;
+    obj[new Date().getMonth() - 1] = summ;
+    obj[new Date().getMonth() - 2] = summm;
+    obj[new Date().getMonth() - 3] = summmm;
+    obj[new Date().getMonth() - 4] = summmmm;
+
+    res.status(200).json(obj);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
 module.exports = {
   getProjects,
   getProject,
@@ -158,4 +309,8 @@ module.exports = {
   addDonation,
   getOrgProjects,
   getUserProjects,
+  getUserDonations,
+  getUserDonationsMonth,
+  getUserDonationsYear,
+  getUserDonationsLastFiveMonths,
 };
