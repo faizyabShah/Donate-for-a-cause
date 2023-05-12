@@ -4,7 +4,7 @@ import "./ProjectCard.scss";
 const ProjectCard = ({ name, description, cost, amount_raised }) => {
   return (
     <div className="project-card">
-      <h2>{name}</h2>
+      <h2>{name || "loading"}</h2>
       <p>{description}</p>
       <p>Cost: ${cost}</p>
       <p>Amount Raised: ${amount_raised}</p>
@@ -15,11 +15,13 @@ const ProjectCard = ({ name, description, cost, amount_raised }) => {
 const OrgProjects = ({ projects }) => {
   return (
     <div className="project-list">
-      {projects != null
-        ? projects.map((project) => (
-            <ProjectCard key={project.name} {...project} />
-          ))
-        : null}
+      {projects != null ? (
+        projects.map((project) => (
+          <ProjectCard key={project.name} {...project} />
+        ))
+      ) : (
+        <h4>Loading...</h4>
+      )}
     </div>
   );
 };

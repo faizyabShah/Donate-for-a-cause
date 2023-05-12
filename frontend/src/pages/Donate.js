@@ -4,33 +4,59 @@ import Projects from "../components/Projects";
 import { useUserContext } from "../hooks/userContextHook";
 function Donate() {
   const { user, token } = useUserContext();
-  const [organizations, setOrganizations] = useState(null);
-  const [projects, setProjects] = useState(null);
+  const [organizations, setOrganizations] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [page, setPage] = useState("overview");
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const url = "http://localhost:5000/api/projects/getallprojects/";
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const res = await fetch(url, options);
-      const data = await res.json();
-      setProjects(data);
+
+  const handleDonate = async (i, _amount) => {
+    let data = {
+      id: projects[i]._id,
+      amount: _amount,
     };
 
-    const fetchOrganizations = async () => {
-      const url = "http://localhost:5000/api/organization/getallorganizations";
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const res = await fetch(url, options);
-      const data = await res.json();
-      setOrganizations(data);
+    const url = "http://localhost:5000/api/projects/donate";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ...data }),
     };
+    const res = await fetch(url, options);
+
+    if (!res.ok) {
+      return console.log("Something went wrong while donating to project");
+    } else {
+      fetchProjects();
+    }
+  };
+
+  const fetchProjects = async () => {
+    const url = "http://localhost:5000/api/projects/getallprojects/";
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const res = await fetch(url, options);
+    const data = await res.json();
+    setProjects(data);
+  };
+
+  const fetchOrganizations = async () => {
+    const url = "http://localhost:5000/api/organization/getallorganizations";
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const res = await fetch(url, options);
+    const data = await res.json();
+    setOrganizations(data);
+  };
+
+  useEffect(() => {
     if (user) {
       fetchOrganizations();
       fetchProjects();
@@ -39,7 +65,7 @@ function Donate() {
   return (
     <div className="userDashboard">
       <Sidebar setPage={setPage} pages={organizations} isSpecial={true} />
-      <Projects org={page} projects={projects} />
+      <Projects org={page} projects={projects} handleDonate={handleDonate} />
     </div>
   );
 }

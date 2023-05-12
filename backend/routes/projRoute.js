@@ -8,6 +8,7 @@ const {
   updateProject,
   addDonation,
   getOrgProjects,
+  getUserProjects,
 } = require("../controllers/projController");
 const authenticate = require("../middleware/authenticate");
 
@@ -32,5 +33,8 @@ router.post("/donate", addDonation);
 
 // get org projects
 router.get("/organization/", getOrgProjects);
+
+// get user projects
+router.get("/user/", getUserProjects);
 
 module.exports = router;

@@ -91,18 +91,17 @@ const updateProject = async (req, res) => {
 };
 
 const addDonation = async (req, res) => {
-  const { user_id, id, amount } = req.body;
+  const { id, amount } = req.body;
 
   let proj;
   try {
-    //find proj from database
     proj = await ProjModel.findById(id);
   } catch (err) {
     return res.status(404).json({ msg: "Proj not found" });
   }
 
   try {
-    proj = await ProjModel.addDonation(user_id, id, amount);
+    proj = await ProjModel.addDonation(req.user._id, id, amount);
 
     res.status(200).json({ proj });
   } catch (err) {
@@ -129,6 +128,27 @@ const getOrgProjects = async (req, res) => {
   }
 };
 
+// get all the projects where the user id in donations is equal to req.user._id
+const getUserProjects = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    // get projects where donations.user_id = req.user._id and populate the organization field
+    const proj = await ProjModel.find({
+      "donations.user_id": req.user._id,
+    }).populate("organization");
+
+    if (!proj || proj.length === 0) {
+      return res.status(404).json({ msg: "No projects found." });
+    }
+    res.status(200).json(proj);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
 module.exports = {
   getProjects,
   getProject,
@@ -137,4 +157,5 @@ module.exports = {
   updateProject,
   addDonation,
   getOrgProjects,
+  getUserProjects,
 };
