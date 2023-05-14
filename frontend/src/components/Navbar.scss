@@ -1,6 +1,6 @@
 header {
     
-    background-color: #ffffff;
+    background-color: #f8f8f8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ header {
         align-items: center;
         justify-content: center;
         width: 100%;   
-        height: 80px;
+        height: 70px;
         z-index: 100;
         padding: 0 50px;
         gap: 1rem;
@@ -20,39 +20,62 @@ header {
         .links {
             display: flex;
             gap: 1rem;
+            justify-content: center;
             flex-grow: 1;
-            justify-content: flex-end;
-        }
-
-        .logo {
-            width: 250px;
-            h1 {
-                font-size: 24px;
+          
+            a {
+              text-decoration: none;
+              position: relative;
+              padding: 0 5px;
+          
+              &:after {
+                content: ".";
+                position: absolute;
+                right: -18px;
+                top: -30%;
+                transform: translateY(-50%);
+                font-size: 70px;
                 font-weight: 700;
-                color: #000;
-                margin: 0 100px 0 0;
+                color: #47abd8;
+                border-radius: 100%;
+              }
+              &:hover {
+                text-decoration: underline;
+                color: #FF4242;
+              }
             }
-        }
-
-        h3 {
+          }
+          
+          .logo {
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          
+            h1 {
+              font-size: 24px;
+              font-weight: 700;
+              color: #47abd8;
+              margin: 0;
+              text-decoration: underline;
+              text-decoration-color: #FF4242; /* Set underline color */
+              text-underline-offset: 1.5px; /* Set distance between text and underline */
+            }
+        
+        
+          }
+          
+          h3 {
             font-size: 16px;
             font-weight: 400;
             color: #000;
-        }
-        a {
-            text-decoration: none;
-            :hover {
-                text-decoration: underline;
-                color:rgb(33, 0, 86)
-            }
-        }
-
-        .userInfo {
+          }
+          
+          .userInfo {
             display: flex;
             gap: 1rem;
             width: 250px;
+          }
+          
         }
-
-    }
-
 }
