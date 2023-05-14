@@ -1,6 +1,7 @@
 import "./Home.scss";
 import { useUserContext } from "../hooks/userContextHook";
 import CardComponent from "../components/CardComponent";
+import Footer from "../components/Footer";
 
 function Home() {
   const { isLoggedIn, user } = useUserContext();
@@ -18,6 +19,9 @@ function Home() {
     title="Example Card"
     text="This is an example of a React Bootstrap Card with an image."
     />
+    <div>
+      <Footer />
+    </div>
 
     </div>
   );

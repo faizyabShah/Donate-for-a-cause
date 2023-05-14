@@ -18,6 +18,7 @@ const Navbar = function ({ links }) {
   return (
     <header>
       <div className="container-navbar">
+        <h1>❤️‍🩹🎗️</h1>
         <Link to={isOrg ? "/org-dashboard" : "/"} className="logo">
           <h1>Home</h1>
         </Link>
