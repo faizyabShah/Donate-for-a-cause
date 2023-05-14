@@ -1,16 +1,16 @@
-import { Card } from "react-bootstrap";
-import "./CardComponent.scss";
+import { Card } from 'react-bootstrap';
+import './CardComponent.scss'
 
-function ExampleCard({ title, body, footer }) {
+function CardComponent(props) {
   return (
-    <Card>
-      <Card.Header>{title}</Card.Header>
+    <Card style={{ width: '18rem' }}>
+      {/* <Card.Img variant="top" src={props.imageUrl} /> */}
       <Card.Body>
-        <Card.Text>{body}</Card.Text>
+        <Card.Title>{props.title}</Card.Title>
+        <Card.Text>{props.text}</Card.Text>
       </Card.Body>
-      <Card.Footer>{footer}</Card.Footer>
     </Card>
   );
 }
 
-export default ExampleCard;
+export default CardComponent;

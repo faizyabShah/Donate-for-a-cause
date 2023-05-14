@@ -7,12 +7,25 @@
         font-family: 'Arapey';
         height: 50%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+      
+        .saying {
+          font-family: 'Arapey/italic';
+          font-size: 3rem;
+          text-align: center;
+        //   text-decoration: underline;
+        //   text-decoration-color: #FF4242; /* Set underline color */
+        //   text-underline-offset: 1.5px; /* Set distance between text and underline */
+          line-height: 1; /* Set the line height */
+        }
     }
 
     .cards {
         height: 50%;
     }
+
+    
 
 }
