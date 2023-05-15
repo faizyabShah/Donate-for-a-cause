@@ -5,6 +5,8 @@ const {
   signupUser,
   getUserInfo,
   _editUser,
+  getUserWallet,
+  addUserWallet,
 } = require("../controllers/userController");
 const authenticate = require("../middleware/authenticate");
 
@@ -24,4 +26,11 @@ router.get("/getuserinfo", getUserInfo);
 
 router.post("/edituser", _editUser);
 
+router.use("/wallet", authenticate);
+
+router.get("/wallet", getUserWallet);
+
+router.use("/addtowallet", authenticate);
+
+router.post("/addtowallet", addUserWallet);
 module.exports = router;

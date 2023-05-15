@@ -26,6 +26,10 @@ const UserSchema = new Schema(
     rank: {
       type: String,
     },
+    wallet: {
+      type: Number,
+      default: 0,
+    },
     password: {
       type: String,
       required: true,

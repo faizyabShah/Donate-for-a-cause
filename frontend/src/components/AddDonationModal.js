@@ -1,4 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
+import PaymentInputs from "./Payment";
 
 function AddDonationModal({ handleClose, index, setAmount }) {
   return (
@@ -14,6 +15,7 @@ function AddDonationModal({ handleClose, index, setAmount }) {
             placeholder="Enter Amount"
             onChange={(e) => setAmount(e.target.value)}
           />
+          <PaymentInputs />
         </Modal.Body>
         <Modal.Footer>
           <Button data-index={index} variant="secondary" onClick={handleClose}>

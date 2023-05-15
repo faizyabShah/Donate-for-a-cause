@@ -4,6 +4,7 @@ import Overview from "../components/Overview";
 import Profile from "../components/Profile";
 import Donations from "../components/Donations";
 import Zakaat from "../components/Zakaat";
+import Wallet from "../components/Wallet";
 // import Donate from "../components/Donate";
 import "./UserDashboard.scss";
 
@@ -23,9 +24,6 @@ const UserDashboard = function () {
         <Donations />
       ) : page === "zakaat" ? (
         <Zakaat />
-      ) : page === "donate" ? (
-        // <Donate />
-        <></>
       ) : (
         <></>
       )}

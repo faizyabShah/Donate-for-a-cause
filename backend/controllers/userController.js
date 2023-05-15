@@ -67,4 +67,38 @@ const _editUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser, getUserInfo, _editUser };
+const getUserWallet = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      req.status(400).json({ msg: "User not found" });
+    }
+    res.status(200).json({ wallet: user.wallet });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
+const addUserWallet = async (req, res) => {
+  const { amount } = req.body;
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      req.status(400).json({ msg: "User not found" });
+    }
+    user.wallet += amount;
+    await user.save();
+    res.status(200).json({ wallet: user.wallet });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
+module.exports = {
+  loginUser,
+  signupUser,
+  getUserInfo,
+  _editUser,
+  getUserWallet,
+  addUserWallet,
+};
