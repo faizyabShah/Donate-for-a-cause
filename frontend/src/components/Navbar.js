@@ -19,10 +19,11 @@ const Navbar = function ({ links }) {
     <header>
       <div className="container-navbar">
         <h1>❤️‍🩹🎗️</h1>
-        <Link to={isOrg ? "/org-dashboard" : "/"} className="logo">
-          <h1>Home</h1>
-        </Link>
+        
         <div className="links">
+         <Link to={isOrg ? "/org-dashboard" : "/"} className="logo">
+           <h3>Home</h3>
+         </Link>
           {links.map((link) =>
             link ? (
               <Link
