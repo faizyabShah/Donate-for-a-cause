@@ -12,17 +12,19 @@
   
     .projectsList {
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1rem;
   
       .project {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        width: 30%;
-        height: 350px;
+        width: 28%;
+        border: none;
+        height: auto;
         padding: 1rem;
         border-radius: 10px;
         background-color: #fff;
@@ -30,15 +32,17 @@
 
   
         .projectTitle {
+          text-align: center;
           font-size: 1.5rem;
           font-weight: bold;
-          margin-bottom: 0.2rem;
+          margin-bottom: 1rem;
+          color: black;
         }
   
         .projectDescription {
           font-size: 1rem;
           text-align: center;
-          margin-bottom: 0.2rem;
+          margin-bottom: 1rem;
         }
   
         .projectAmount {
@@ -65,10 +69,15 @@
   
             .projectAmountRequiredAmount,
             .projectAmountCollectedAmount {
-              font-size: 1.2rem;
+              font-size: 1rem;
               font-weight: bold;
             }
           }
+        }
+
+        .donateButton {
+          margin-top: 2rem;
+          align-self: center;
         }
       }
     }

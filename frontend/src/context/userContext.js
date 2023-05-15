@@ -102,6 +102,22 @@ export const UserProvider = ({ children }) => {
           isLoading: false,
           error: null,
         };
+      case "DONATE":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            wallet: state.user.wallet - action.payload.amount,
+          },
+        };
+      case "ADDAMOUNT":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            wallet: state.user.wallet + parseInt(action.payload.amount),
+          },
+        };
       default:
         return state;
     }

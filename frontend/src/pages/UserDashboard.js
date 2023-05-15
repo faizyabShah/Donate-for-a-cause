@@ -14,7 +14,7 @@ const UserDashboard = function () {
     <div className="userDashboard">
       <Sidebar
         setPage={setPage}
-        pages={["overview", "profile", "donations", "zakaat"]}
+        pages={["overview", "profile", "donations", "zakaat", "wallet"]}
       />
       {page === "overview" ? (
         <Overview />
@@ -24,6 +24,8 @@ const UserDashboard = function () {
         <Donations />
       ) : page === "zakaat" ? (
         <Zakaat />
+      ) : page === "wallet" ? (
+        <Wallet />
       ) : (
         <></>
       )}

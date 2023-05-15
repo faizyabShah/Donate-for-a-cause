@@ -146,8 +146,8 @@ ProjSchema.statics.addDonation = async function (user_id, id, amount) {
     throw Error("All fields are required.");
   }
   const proj = await this.findOne({ _id: id });
-  proj.donations.push({ user_id, amount });
-  proj.amount_raised += amount;
+  proj.donations.push({ user_id, amount: parseInt(amount) });
+  proj.amount_raised += parseInt(amount);
   proj.save();
   return proj;
 };

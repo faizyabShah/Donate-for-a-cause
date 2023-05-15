@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Projects from "../components/Projects";
 import { useUserContext } from "../hooks/userContextHook";
 function Donate() {
-  const { user, token } = useUserContext();
+  const { user, token, dispatch } = useUserContext();
   const [organizations, setOrganizations] = useState([]);
   const [projects, setProjects] = useState([]);
   const [page, setPage] = useState("overview");
@@ -29,6 +29,7 @@ function Donate() {
       return console.log("Something went wrong while donating to project");
     } else {
       fetchProjects();
+      dispatch({ type: "DONATE", payload: { amount: _amount } });
     }
   };
 
@@ -41,6 +42,7 @@ function Donate() {
     };
     const res = await fetch(url, options);
     const data = await res.json();
+    setPage(data[0].organization);
     setProjects(data);
   };
 

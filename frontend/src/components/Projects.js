@@ -1,13 +1,30 @@
 import AddDonationModal from "./AddDonationModal";
 import { useState } from "react";
+import { useUserContext } from "../hooks/userContextHook";
+import { Card, Button } from "react-bootstrap";
 import "./Projects.scss";
 
 function Projects({ org, projects, handleDonate }) {
   const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState(null);
   const [amount, setAmount] = useState(0);
   const [i, setI] = useState();
+  const { user } = useUserContext();
+
+  const handleShut = () => {
+    setShowModal(false);
+    setError(null);
+  };
 
   const handleModalClose = () => {
+    if (amount <= 0) {
+      setError("Invalid amount");
+      return;
+    } else if (amount > user.wallet) {
+      setError("Not enough money in wallet.");
+      return;
+    }
+    setError(null);
     handleDonate(i, amount);
     setShowModal(false);
   };
@@ -25,33 +42,41 @@ function Projects({ org, projects, handleDonate }) {
         {projects != null
           ? projects.map((project, i) =>
               project.organization == org ? (
-                <div className="project">
-                  <div className="projectTitle">{project.name}</div>
-                  <div className="projectDescription">
-                    {project.description}
-                  </div>
-                  <div className="projectAmount">
-                    <div className="projectAmountRequired">
-                      <div className="projectAmountRequiredTitle">
-                        Amount Required
+                <Card className="project">
+                  <Card.Body>
+                    <Card.Title className="projectTitle">
+                      {project.name}
+                    </Card.Title>
+                    <Card.Text className="projectDescription">
+                      {project.description}
+                    </Card.Text>
+                    <div className="projectAmount">
+                      <div className="projectAmountRequired">
+                        <div className="projectAmountRequiredTitle">
+                          Amount Required
+                        </div>
+                        <div className="projectAmountRequiredAmount">
+                          {project.cost}
+                        </div>
                       </div>
-                      <div className="projectAmountRequiredAmount">
-                        {project.cost}
+                      <div className="projectAmountCollected">
+                        <div className="projectAmountCollectedTitle">
+                          Amount Collected
+                        </div>
+                        <div className="projectAmountCollectedAmount">
+                          {project.amount_raised}
+                        </div>
                       </div>
                     </div>
-                    <div className="projectAmountCollected">
-                      <div className="projectAmountCollectedTitle">
-                        Amount Collected
-                      </div>
-                      <div className="projectAmountCollectedAmount">
-                        {project.amount_raised}
-                      </div>
-                    </div>
-                  </div>
-                  <button onClick={(e) => something(e)} data-index={i}>
-                    Donate
-                  </button>
-                </div>
+                    <Button
+                      className="donateButton"
+                      onClick={(e) => something(e)}
+                      data-index={i}
+                    >
+                      Donate
+                    </Button>
+                  </Card.Body>
+                </Card>
               ) : null
             )
           : null}
@@ -59,7 +84,9 @@ function Projects({ org, projects, handleDonate }) {
           <AddDonationModal
             index={i}
             handleClose={handleModalClose}
+            handleShut={handleShut}
             setAmount={setAmount}
+            error={error}
           />
         ) : null}
       </div>

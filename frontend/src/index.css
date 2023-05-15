@@ -10,3 +10,7 @@
 #root {
     height: 96vh;
 }
+
+.error {
+    color: red;
+}

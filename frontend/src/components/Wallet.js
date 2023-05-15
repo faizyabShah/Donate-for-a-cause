@@ -1,52 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../hooks/userContextHook";
 import { Button, Card } from "react-bootstrap";
+import AddAmountModal from "./AddAmountModal";
 
 const Wallet = () => {
   const [amount, setAmount] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  const { token, user } = useUserContext();
+  const { token, user, dispatch } = useUserContext();
 
-  const handleAddAmount = () => {
-    setAmount(amount + 1);
+  const updateAmount = async () => {
+    const url = "http://localhost:5000/api/user/addtowallet";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ amount: amount }),
+    };
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      return console.log("Something went wrong while adding to wallet");
+    }
+    const data = await res.json();
+    setAmount(data.wallet);
+    dispatch({ type: "ADDAMOUNT", payload: { amount: amount } });
   };
 
-  useEffect(() => {
-    const fetchAmount = async () => {
-      const url = "http://localhost:5000/api/user/wallet";
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const res = await fetch(url, options);
-      const data = await res.json();
-      setAmount(data.wallet);
-    };
-    if (user) {
-      fetchAmount();
-    }
-  }, [user]);
+  const handleClick = (e) => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    updateAmount();
+  };
 
   return (
-    <Card
-      style={{
-        margin: "auto",
-        marginTop: "3rem",
-        width: "20rem",
-        height: "15rem",
-      }}
-    >
-      <Card.Body>
-        <Card.Title>Wallet</Card.Title>
-        <Card.Text>
-          Current Amount: {amount != null ? amount : "loading"}
-        </Card.Text>
-        <Button variant="primary" onClick={handleAddAmount}>
-          Add Amount
-        </Button>
-      </Card.Body>
-    </Card>
+    <>
+      <Card
+        style={{
+          margin: "auto",
+          marginTop: "3rem",
+          width: "20rem",
+          height: "15rem",
+        }}
+      >
+        <Card.Body>
+          <Card.Title>Wallet</Card.Title>
+          <Card.Text>Current Amount: {user.wallet}</Card.Text>
+          <Button variant="primary" onClick={(e) => handleClick(e)}>
+            Add Amount
+          </Button>
+        </Card.Body>
+      </Card>
+      {showModal ? (
+        <AddAmountModal handleClose={handleModalClose} setAmount={setAmount} />
+      ) : null}
+    </>
   );
 };
 
