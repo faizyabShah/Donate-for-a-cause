@@ -10,6 +10,7 @@ export const login = async function (formData, dispatch) {
   const json = await reponse.json();
   if (!reponse.ok) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
+    return { error: true };
   }
   if (reponse.ok) {
     json.isOrg = false;
@@ -42,6 +43,7 @@ export const signup = async function (formData, dispatch) {
   const json = await response.json();
   if (!response.ok) {
     dispatch({ type: "ERROR", payload: { error: json.msg } });
+    return { error: true };
   }
   if (response.ok) {
     json.isOrg = false;

@@ -3,6 +3,8 @@ import { useUserContext } from "../hooks/userContextHook";
 import { login } from "../actions/user";
 import { orgLogin } from "../actions/org";
 import { useNavigate } from "react-router-dom";
+import { Container, Form, Button } from "react-bootstrap";
+import "./Login.scss";
 
 function Login({ isUser }) {
   let [formData, setFormData] = useState({
@@ -22,9 +24,9 @@ function Login({ isUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isUser) {
-      await login(formData, dispatch);
+      var loginResult = await login(formData, dispatch);
     } else {
-      await orgLogin(formData, dispatch);
+      var loginResult = await orgLogin(formData, dispatch);
     }
 
     setFormData({
@@ -32,43 +34,59 @@ function Login({ isUser }) {
       password: "",
     });
 
-    if (error == null) {
-      if (isUser) {
-        navigate("/");
-      } else {
-        navigate("/org-dashboard");
-      }
+    if (loginResult) {
+      return;
+    }
+
+    if (isUser) {
+      navigate("/");
+    } else {
+      navigate("/org-dashboard");
     }
   };
 
   return (
-    <div className="login">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">email: </label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
-        />
-        <button disabled={isLoading} type="submit">
-          Login
-        </button>
-        {error ? <p>{error}</p> : null}
-      </form>
-    </div>
+    <Container className="d-flex justify-content-center align-items-center login-container">
+      <div className="login">
+        <h3>Login</h3>
+        <Form onSubmit={handleSubmit} className="text-center login-form">
+          <Form.Group controlId="email">
+            <Form.Label className="login-label">Email:</Form.Label>
+            <Form.Control
+              className="login-input"
+              type="text"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+            />
+          </Form.Group>
+
+          <Form.Group controlId="password">
+            <Form.Label className="login-label">Password:</Form.Label>
+            <Form.Control
+              className="login-input"
+              type="password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+            />
+          </Form.Group>
+
+          <Button
+            className="mt-3"
+            variant="primary"
+            disabled={isLoading}
+            type="submit"
+          >
+            Login
+          </Button>
+
+          {error && <p className="error">{error}</p>}
+        </Form>
+      </div>
+    </Container>
   );
 }
 
