@@ -13,13 +13,15 @@ function Home() {
         <h1 className="saying">Great Futures are built</h1>
         <h1 className="saying">with small donations.</h1>
       </div>
-      <div className="cards"></div>
+      <div className="cards">
       <CardComponent
-    imageUrl="https://example.com/image.jpg"
-    title="Example Card"
-    text="This is an example of a React Bootstrap Card with an image."
-    />
-    <div>
+        title="Join us to make a difference"
+        text="We work to connect you to the causes you care about. "
+        className="midCard"
+      />
+      </div>
+      
+    <div className="Footer">
       <Footer />
     </div>
 

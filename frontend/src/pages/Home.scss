@@ -3,7 +3,16 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    
+    .Footer {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
     .info {
         font-family: 'Arapey';
         height: 50%;
@@ -25,6 +34,12 @@
 
     .cards {
         height: 50%;
+        position:relative;
+
+        .midCard{
+            
+        }
+        
     }
 
     

@@ -1,0 +1,29 @@
+.card {
+    width: 90%;
+    margin: 2% auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;;
+  
+    .card-img-top {
+      width: 100%;
+      height: auto;
+    }
+  
+    .card-body {
+      padding: 5%;
+  
+      .card-title {
+        font-size: 120%;
+        margin-bottom: 2%;
+        color: #FF4242;
+        font-weight: bold;
+      }
+  
+      .card-text {
+        font-size: 100%;
+        margin-bottom: 2%;
+      }
+    }
+  }
+  
