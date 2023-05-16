@@ -53,6 +53,10 @@ const ProjSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Organization",
     },
+    peopleImpacted: {
+      type: Number,
+      required: true,
+    },
   },
   { timeStamps: true }
 );
@@ -67,9 +71,18 @@ ProjSchema.statics.addProject = async function (
   Type,
   Audit,
   Picture,
-  organization
+  organization,
+  peopleImpacted
 ) {
-  if (!name || !description || !cost || !Type || !Audit || !Picture) {
+  if (
+    !name ||
+    !description ||
+    !cost ||
+    !Type ||
+    !Audit ||
+    !Picture ||
+    peopleImpacted
+  ) {
     throw Error("All fields are required.");
   }
 
@@ -81,6 +94,7 @@ ProjSchema.statics.addProject = async function (
     Audit,
     Picture,
     organization,
+    peopleImpacted,
   });
   return proj;
 };
@@ -98,38 +112,6 @@ ProjSchema.statics.getProject = async function (id) {
 // write a static method to get all projects
 ProjSchema.statics.getAllProjects = async function () {
   const proj = await this.find();
-  return proj;
-};
-
-// write a static method to delete a project of a specific id
-ProjSchema.statics.deleteProject = async function (id) {
-  if (!id) {
-    throw Error("Id is required.");
-  }
-
-  const proj = await this.findOneAndDelete({ _id: id });
-  return proj;
-};
-
-// write a static method to update a project of a specific id
-ProjSchema.statics.updateProject = async function (
-  id,
-  name,
-  description,
-  cost,
-  Type,
-  Audit,
-  Picture
-) {
-  if (!id) {
-    throw Error("Id is required.");
-  }
-
-  const proj = await this.findOneAndUpdate(
-    { _id: id },
-    { name, description, cost, Type, Audit, Picture }
-  );
-
   return proj;
 };
 
@@ -163,24 +145,6 @@ ProjSchema.statics.getOrganizationProjects = async function (id) {
 // write a static method to get all projects of a user
 ProjSchema.statics.getUserProjects = async function (id) {
   const proj = await this.find({ "donations.user_id": id });
-  return proj;
-};
-
-// write a static method to get all projects of a type
-ProjSchema.statics.getTypeProjects = async function (type) {
-  const proj = await this.find({ Type: type });
-  return proj;
-};
-
-// write a static method to get projects with a search string in their name or description or organizataion name
-ProjSchema.statics.getSearchProjects = async function (search) {
-  const proj = await this.find({
-    $or: [
-      { name: { $regex: search, $options: "i" } },
-      { description: { $regex: search, $options: "i" } },
-      { organization: { $regex: search, $options: "i" } },
-    ],
-  });
   return proj;
 };
 

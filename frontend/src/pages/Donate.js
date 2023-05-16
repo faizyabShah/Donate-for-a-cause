@@ -35,7 +35,11 @@ function Donate() {
       setProjects(
         projects.map((project) =>
           project._id === projects[i]._id
-            ? { ...project, amount_raised: project.amount_raised + _amount }
+            ? {
+                ...project,
+                amount_raised:
+                  parseInt(project.amount_raised) + parseInt(_amount),
+              }
             : project
         )
       );

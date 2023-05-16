@@ -1,4 +1,5 @@
 const { User } = require("../models/userModel");
+const { ProjModel } = require("../models/projModel");
 const jwt = require("jsonwebtoken");
 
 const createToken = (_id) => {
@@ -108,6 +109,26 @@ const clearNotifications = async (req, res) => {
   }
 };
 
+//get sum of people impacted for all completed projects that the user has donate to
+const getPeopleImpacted = async (req, res) => {
+  try {
+    let projects = await ProjModel.find({
+      donations: { $elemMatch: { user_id: req.user._id } },
+    });
+    let peopleImpacted = 0;
+    for (let i = 0; i < projects.length; i++) {
+      if (projects[i].status === "Completed") {
+        if (projects[i].peopleImpacted) {
+          peopleImpacted += parseInt(projects[i].peopleImpacted);
+        }
+      }
+    }
+    res.status(200).json({ peopleImpacted });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   loginUser,
   signupUser,
@@ -116,4 +137,5 @@ module.exports = {
   getUserWallet,
   addUserWallet,
   clearNotifications,
+  getPeopleImpacted,
 };

@@ -77,6 +77,7 @@ const Navbar = function ({ links, notifications, setShowNotifications }) {
             className="navbar-logo"
           />
         </Link>
+        <h3 className="title">DONATELINK</h3>
         <div className="links">
           <Link to={isOrg ? "/org-dashboard" : "/"} className="logo">
             <h3>Home</h3>

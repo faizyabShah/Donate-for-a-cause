@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProjectCard.scss";
 import "./OrgProjects.scss";
+import Loader from "./Loader";
 
 const ProjectCard = ({ name, description, cost, amount_raised }) => {
   return (
@@ -24,7 +25,7 @@ const OrgProjects = ({ projects }) => {
             )
         )
       ) : (
-        <h4>Loading...</h4>
+        <Loader />
       )}
     </div>
   );

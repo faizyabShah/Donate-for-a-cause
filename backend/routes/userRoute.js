@@ -8,6 +8,7 @@ const {
   getUserWallet,
   addUserWallet,
   clearNotifications,
+  getPeopleImpacted,
 } = require("../controllers/userController");
 const authenticate = require("../middleware/authenticate");
 
@@ -38,4 +39,8 @@ router.post("/addtowallet", addUserWallet);
 router.use("/clearnotifications", authenticate);
 
 router.post("/clearnotifications", clearNotifications);
+
+router.use("/getpeopleimpacted", authenticate);
+
+router.get("/getpeopleimpacted", getPeopleImpacted);
 module.exports = router;

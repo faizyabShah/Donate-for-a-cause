@@ -18,6 +18,7 @@ function Projectform({ setPage }) {
     type: "",
     audit: "",
     Picture: "",
+    peopleImpacted: "",
   });
 
   const handleFileinput = async (e) => {
@@ -59,6 +60,7 @@ function Projectform({ setPage }) {
           type: "",
           audit: "",
           picture: "",
+          peopleImpacted: "",
         });
 
         setError(null);
@@ -97,6 +99,18 @@ function Projectform({ setPage }) {
             placeholder="Enter project cost"
             value={formData.cost}
             onChange={(e) => setFormData({ ...formData, cost: e.target.value })}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="cost">
+          <Form.Label>Approximate number of people impacted:</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter project cost"
+            value={formData.peopleImpacted}
+            onChange={(e) =>
+              setFormData({ ...formData, peopleImpacted: e.target.value })
+            }
           />
         </Form.Group>
 

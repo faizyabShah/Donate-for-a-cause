@@ -109,7 +109,7 @@ function Projects({ org, projects, handleDonate }) {
                           {
                             data: [
                               project.amount_raised,
-                              project.amount_raised - project.cost,
+                              project.cost - project.amount_raised,
                             ],
                             backgroundColor: ["#FF6384", "#36A2EB"],
                             hoverBackgroundColor: ["#FF6384", "#36A2EB"],
@@ -126,6 +126,7 @@ function Projects({ org, projects, handleDonate }) {
                     className="donateButton"
                     onClick={(e) => something(e)}
                     data-index={i}
+                    disabled={project.amount_raised >= project.cost}
                   >
                     Donate
                   </Button>

@@ -19,6 +19,11 @@ header {
         gap: 1rem;
         position: relative;
         max-width: 1250px;
+        
+        .title {
+          margin-left: 6rem;
+          font-weight: bold;
+        }
 
         .links {
             display: flex;

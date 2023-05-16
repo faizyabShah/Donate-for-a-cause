@@ -4,8 +4,6 @@ const {
   createProject,
   getProjects,
   getProject,
-  deleteProject,
-  updateProject,
   addDonation,
   getOrgProjects,
   getUserProjects,
@@ -27,12 +25,6 @@ router.get("/getbyid/:id", getProject);
 
 // create a project
 router.post("/addproject/", createProject);
-
-// delete a project
-router.post("/delete/:id", deleteProject);
-
-// update a project
-router.post("/update", updateProject);
 
 // add a donation
 router.post("/donate", addDonation);

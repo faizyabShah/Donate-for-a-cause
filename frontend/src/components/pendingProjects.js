@@ -1,6 +1,7 @@
 import React from "react";
 import { useUserContext } from "../hooks/userContextHook";
 import "./ProjectCard.scss";
+import Loader from "./Loader";
 
 const ProjectCard = ({
   _id,
@@ -64,7 +65,7 @@ const PendingProjects = ({ projects, setProjects }) => {
             )
         )
       ) : (
-        <h4>Loading...</h4>
+        <Loader />
       )}
     </div>
   );
