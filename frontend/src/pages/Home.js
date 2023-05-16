@@ -19,6 +19,13 @@ function Home() {
         text="We work to connect you to the causes you care about. "
         className="midCard"
       />
+      <CardComponent
+        title="Join us to make a difference"
+        hasImage={true}
+        imageName="kid.jpg"
+
+        className="leftCard"
+      />
       </div>
       
     <div className="Footer">
