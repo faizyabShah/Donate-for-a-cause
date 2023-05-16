@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../hooks/userContextHook";
 import { login } from "../actions/user";
 import { orgLogin } from "../actions/org";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 import "./Login.scss";
 
@@ -85,6 +85,7 @@ function Login({ isUser }) {
 
           {error && <p className="error">{error}</p>}
         </Form>
+        {isUser ? <Link to="../org-login">Organization</Link> : null}
       </div>
     </Container>
   );

@@ -35,6 +35,9 @@ function App() {
             isLoggedIn && !isOrg ? { path: "./donate", name: "Donate" } : null,
             !isOrg ? { path: "/about", name: "About" } : null,
             isLoggedIn ? { path: "./", name: "Logout" } : null,
+            !isLoggedIn
+              ? { path: "./org-register", name: "Organization" }
+              : null,
           ]}
           notifications={isLoggedIn && !isOrg}
           setShowNotifications={handleShow}
