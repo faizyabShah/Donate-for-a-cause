@@ -118,6 +118,14 @@ export const UserProvider = ({ children }) => {
             wallet: state.user.wallet + parseInt(action.payload.amount),
           },
         };
+      case "CLEARNOTIFICATIONS":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            notifications: [],
+          },
+        };
       default:
         return state;
     }

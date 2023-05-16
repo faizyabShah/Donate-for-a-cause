@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProjectCard.scss";
 
-const ProjectCard = ({ name, description, cost, amount_raised }) => {
+const ProjectCard = ({ name, description, cost, amount_raised, Picture }) => {
   return (
     <div className="project-card">
       <h2>{name || "loading"}</h2>

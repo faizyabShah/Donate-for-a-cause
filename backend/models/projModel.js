@@ -61,6 +61,7 @@ const ProjSchema = new Schema(
     },
     Picture: {
       type: String,
+      required: true,
     },
     organization: {
       type: Schema.Types.ObjectId,

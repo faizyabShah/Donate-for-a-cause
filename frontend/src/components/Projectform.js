@@ -17,8 +17,14 @@ function Projectform({ setPage }) {
     cost: "",
     type: "",
     audit: "",
-    picture: "",
+    Picture: "",
   });
+
+  const handleFileinput = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await toBase66(file);
+    setFormData({ ...formData, Picture: base64 });
+  };
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -27,7 +33,7 @@ function Projectform({ setPage }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(token);
+    console.log(formData);
     setLoading(true);
     if (token) {
       const response = await fetch(
@@ -122,12 +128,9 @@ function Projectform({ setPage }) {
         <Form.Group controlId="picture">
           <Form.Label>Project Picture</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Enter project picture URL"
-            value={formData.picture}
-            onChange={(e) =>
-              setFormData({ ...formData, picture: e.target.value })
-            }
+            type="file"
+            placeholder="Enter project picture"
+            onChange={(e) => handleFileinput(e)}
           />
         </Form.Group>
 
@@ -143,3 +146,12 @@ function Projectform({ setPage }) {
 }
 
 export default Projectform;
+
+function toBase66(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}

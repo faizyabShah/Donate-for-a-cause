@@ -28,7 +28,13 @@ function Donate() {
     if (!res.ok) {
       return console.log("Something went wrong while donating to project");
     } else {
-      fetchProjects();
+      setProjects(
+        projects.map((project) =>
+          project._id === projects[i]._id
+            ? { ...project, amount_raised: project.amount_raised + _amount }
+            : project
+        )
+      );
       dispatch({ type: "DONATE", payload: { amount: _amount } });
     }
   };

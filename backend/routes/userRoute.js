@@ -7,6 +7,7 @@ const {
   _editUser,
   getUserWallet,
   addUserWallet,
+  clearNotifications,
 } = require("../controllers/userController");
 const authenticate = require("../middleware/authenticate");
 
@@ -33,4 +34,8 @@ router.get("/wallet", getUserWallet);
 router.use("/addtowallet", authenticate);
 
 router.post("/addtowallet", addUserWallet);
+
+router.use("/clearnotifications", authenticate);
+
+router.post("/clearnotifications", clearNotifications);
 module.exports = router;

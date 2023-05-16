@@ -1,7 +1,9 @@
 import AddDonationModal from "./AddDonationModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "../hooks/userContextHook";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import ProjectDetailsModal from "./ProjectDetailsModal";
 import "./Projects.scss";
 
 function Projects({ org, projects, handleDonate }) {
@@ -10,6 +12,7 @@ function Projects({ org, projects, handleDonate }) {
   const [amount, setAmount] = useState(0);
   const [i, setI] = useState();
   const { user } = useUserContext();
+  const [showDetails, setShowDetails] = useState([]);
 
   const handleShut = () => {
     setShowModal(false);
@@ -35,6 +38,31 @@ function Projects({ org, projects, handleDonate }) {
     setI(index);
   };
 
+  const closeModaltwo = () => {
+    setShowDetails(false);
+  };
+
+  const somethingtwo = (e) => {
+    const index = e.target.getAttribute("data-index");
+    let arr = [...showDetails];
+    arr[index] = true;
+    setShowDetails(arr);
+  };
+
+  useEffect(() => {
+    let arr = [];
+    for (let i = 0; i < projects.length; i++) {
+      arr.push(false);
+    }
+    setShowDetails(arr);
+  }, [projects]);
+
+  const somethingthree = (i) => {
+    let arr = [...showDetails];
+    arr[i] = false;
+    setShowDetails(arr);
+  };
+
   return (
     <div className="projects">
       <h1>Projects</h1>
@@ -44,12 +72,25 @@ function Projects({ org, projects, handleDonate }) {
               project.organization == org ? (
                 <Card className="project">
                   <Card.Body>
+                    <Card.Img
+                      className="projectImage"
+                      variant="top"
+                      src={project.Picture}
+                    />
                     <Card.Title className="projectTitle">
                       {project.name}
                     </Card.Title>
-                    <Card.Text className="projectDescription">
+
+                    <Link
+                      className="details"
+                      data-index={i}
+                      onClick={somethingtwo}
+                    >
+                      details
+                    </Link>
+                    {/* <Card.Text className="projectDescription">
                       {project.description}
-                    </Card.Text>
+                    </Card.Text> */}
                     <div className="projectAmount">
                       <div className="projectAmountRequired">
                         <div className="projectAmountRequiredTitle">
@@ -76,6 +117,15 @@ function Projects({ org, projects, handleDonate }) {
                       Donate
                     </Button>
                   </Card.Body>
+                  {showDetails[i] ? (
+                    <ProjectDetailsModal
+                      i={i}
+                      somethingthree={somethingthree}
+                      handleClose={closeModaltwo}
+                      handleShut={closeModaltwo}
+                      project={project}
+                    />
+                  ) : null}
                 </Card>
               ) : null
             )

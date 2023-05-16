@@ -20,15 +20,22 @@
       .project {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        width: 28%;
+        width: 30%;
         border: none;
         height: auto;
         padding: 1rem;
         border-radius: 10px;
         background-color: #fff;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        .projectImage {
+          margin-bottom: 1rem;
+          width: 90%;
+          height: 150px;
+          border-radius: 15px;
+        }
 
   
         .projectTitle {
@@ -71,13 +78,23 @@
             .projectAmountCollectedAmount {
               font-size: 1rem;
               font-weight: bold;
+              // margin-bottom: 1rem;
+            }
+
+            .projectAmountCollectedAmount {
+              margin-bottom: 1rem;
             }
           }
         }
 
+        .card-body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         .donateButton {
-          margin-top: 2rem;
-          align-self: center;
+          position: absolute;
+          bottom: 10px;
         }
       }
     }

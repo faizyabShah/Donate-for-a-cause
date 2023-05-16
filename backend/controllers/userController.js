@@ -94,6 +94,20 @@ const addUserWallet = async (req, res) => {
   }
 };
 
+const clearNotifications = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      req.status(400).json({ msg: "User not found" });
+    }
+    user.notifications = [];
+    await user.save();
+    res.status(200).json({ msg: "Notifications cleared." });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   loginUser,
   signupUser,
@@ -101,4 +115,5 @@ module.exports = {
   _editUser,
   getUserWallet,
   addUserWallet,
+  clearNotifications,
 };
