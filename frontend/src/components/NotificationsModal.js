@@ -5,7 +5,7 @@ import "./NotificationsModal.scss";
 function NotificationsModal({ handleClose, handleShut }) {
   const { user, token, dispatch } = useUserContext();
   const clearNotifications = async () => {
-    const url = "http://localhost:5000/api/users/clearnotifications";
+    const url = "http://localhost:5000/api/user/clearnotifications";
     const options = {
       method: "POST",
       headers: {
@@ -38,19 +38,20 @@ function NotificationsModal({ handleClose, handleShut }) {
                   </div>
                 ))
               : "No notifications"}
-            {user.notifications.length != 0 ? (
-              <Button className="clear" OnClick={clearNotifications}>
-                Clear
-              </Button>
-            ) : (
-              <></>
-            )}
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+          {user.notifications.length != 0 ? (
+            <Button
+              variant="secondary"
+              className="clear"
+              onClick={clearNotifications}
+            >
+              Clear
+            </Button>
+          ) : (
+            <></>
+          )}
         </Modal.Footer>
       </Modal>
     </>

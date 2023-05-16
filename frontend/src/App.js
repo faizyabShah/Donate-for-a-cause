@@ -33,7 +33,6 @@ function App() {
             isLoggedIn ? null : { path: "./login", name: "Login" },
             isLoggedIn ? null : { path: "./register", name: "Register" },
             isLoggedIn && !isOrg ? { path: "./donate", name: "Donate" } : null,
-            !isOrg ? { path: "/about", name: "About" } : null,
             isLoggedIn ? { path: "./", name: "Logout" } : null,
             !isLoggedIn
               ? { path: "./org-register", name: "Organization" }

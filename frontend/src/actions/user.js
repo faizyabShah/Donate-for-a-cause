@@ -22,6 +22,7 @@ export const login = async function (formData, dispatch) {
       type: "LOGIN",
       payload: json,
     });
+    return { error: false };
   }
 };
 
@@ -55,6 +56,7 @@ export const signup = async function (formData, dispatch) {
       type: "LOGIN",
       payload: json,
     });
+    return { error: false };
   }
 };
 

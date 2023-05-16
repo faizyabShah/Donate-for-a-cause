@@ -3,7 +3,6 @@ import Sidebar from "../components/Sidebar";
 import Overview from "../components/Overview";
 import Profile from "../components/Profile";
 import Donations from "../components/Donations";
-import Zakaat from "../components/Zakaat";
 import Wallet from "../components/Wallet";
 // import Donate from "../components/Donate";
 import "./UserDashboard.scss";
@@ -14,7 +13,7 @@ const UserDashboard = function () {
     <div className="userDashboard">
       <Sidebar
         setPage={setPage}
-        pages={["overview", "profile", "donations", "zakaat", "wallet"]}
+        pages={["overview", "profile", "donations", "wallet"]}
       />
       {page === "overview" ? (
         <Overview />
@@ -22,8 +21,6 @@ const UserDashboard = function () {
         <Profile />
       ) : page === "donations" ? (
         <Donations />
-      ) : page === "zakaat" ? (
-        <Zakaat />
       ) : page === "wallet" ? (
         <Wallet />
       ) : (

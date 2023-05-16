@@ -2,3 +2,38 @@
     width: 90%;
     border-radius: 20px;
 }
+
+.projectAmount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.2rem;
+
+    .projectAmountRequired,
+    .projectAmountCollected {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0.2rem;
+
+      .projectAmountRequiredTitle,
+      .projectAmountCollectedTitle {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 0.2rem;
+      }
+
+      .projectAmountRequiredAmount,
+      .projectAmountCollectedAmount {
+        font-size: 1rem;
+        font-weight: bold;
+        // margin-bottom: 1rem;
+      }
+
+      .projectAmountCollectedAmount {
+        margin-bottom: 1rem;
+      }
+    }
+}

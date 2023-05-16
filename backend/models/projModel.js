@@ -45,20 +45,6 @@ const ProjSchema = new Schema(
       type: Number,
       default: 0,
     },
-    Type: {
-      type: String,
-      enum: [
-        "Zakat",
-        "Zakat-ul-Fitr",
-        "Sadaqah",
-        "Sadaqah Jariyah",
-        "Qurbani",
-        "Waqf",
-      ],
-    },
-    Audit: {
-      type: String,
-    },
     Picture: {
       type: String,
       required: true,

@@ -9,6 +9,10 @@ function Donate() {
   const [page, setPage] = useState("overview");
 
   const handleDonate = async (i, _amount) => {
+    if (projects[i].amount_raised + _amount > projects[i].amount_required) {
+      _amount = projects[i].amount_required - projects[i].amount_raised;
+    }
+
     let data = {
       id: projects[i]._id,
       amount: _amount,

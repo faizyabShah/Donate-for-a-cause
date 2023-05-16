@@ -16,8 +16,20 @@ function ProjectDetailsModal({ somethingthree, project, i }) {
             src={project.Picture}
             alt={project.name}
           />
-          <p>Amount Collected: {project.amount_raised}</p>
-          <p>Amount Required: {project.cost}</p>
+          <div className="projectAmount">
+            <div className="projectAmountRequired">
+              <div className="projectAmountRequiredTitle">Amount Required</div>
+              <div className="projectAmountRequiredAmount">{project.cost}</div>
+            </div>
+            <div className="projectAmountCollected">
+              <div className="projectAmountCollectedTitle">
+                Amount Collected
+              </div>
+              <div className="projectAmountCollectedAmount">
+                {project.amount_raised}
+              </div>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={(e) => somethingthree(i)}>

@@ -12,7 +12,6 @@ const OrgRegister = function () {
     phone: "",
     location: "",
     email: "",
-    picture: "",
   });
 
   const navigate = useNavigate();
@@ -109,19 +108,6 @@ const OrgRegister = function () {
             value={formData.description}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
-            }
-          />
-        </div>
-        <div className="form-group">
-          <label for="picture">Picture</label>
-          <input
-            type="text"
-            className="form-control"
-            id="picture"
-            placeholder="Enter picture"
-            value={formData.picture}
-            onChange={(e) =>
-              setFormData({ ...formData, picture: e.target.value })
             }
           />
         </div>

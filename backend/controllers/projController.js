@@ -104,6 +104,9 @@ const addDonation = async (req, res) => {
 
   try {
     proj = await ProjModel.addDonation(req.user._id, id, amount);
+    let user = await User.findById(req.user._id);
+    user.wallet -= parseInt(amount);
+    await user.save();
 
     res.status(200).json({ proj });
   } catch (err) {
@@ -319,7 +322,7 @@ const completeProject = async (req, res) => {
     }
     for (user of users) {
       user.notifications.push({
-        message: `The project ${project.name} has been completed.`,
+        message: `The project ${project.name} that you donated to has been completed.`,
         project_id: project._id,
       });
       await user.save();

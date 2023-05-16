@@ -97,7 +97,7 @@ const Navbar = function ({ links, notifications, setShowNotifications }) {
         <div className="userInfo">
           {isLoggedIn ? (
             <>
-              <Link to="/profile">
+              <Link>
                 <h3>{user.name}</h3>
               </Link>
               {notifications ? (

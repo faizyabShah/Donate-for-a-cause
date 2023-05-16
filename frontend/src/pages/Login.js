@@ -23,10 +23,11 @@ function Login({ isUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let loginResult;
     if (isUser) {
-      var loginResult = await login(formData, dispatch);
+      loginResult = await login(formData, dispatch);
     } else {
-      var loginResult = await orgLogin(formData, dispatch);
+      loginResult = await orgLogin(formData, dispatch);
     }
 
     setFormData({
@@ -34,7 +35,7 @@ function Login({ isUser }) {
       password: "",
     });
 
-    if (loginResult) {
+    if (loginResult.error) {
       return;
     }
 

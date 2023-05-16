@@ -5,6 +5,7 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProjectDetailsModal from "./ProjectDetailsModal";
 import { Doughnut } from "react-chartjs-2";
+import Loader from "./Loader";
 import "./Projects.scss";
 
 function Projects({ org, projects, handleDonate }) {
@@ -79,69 +80,71 @@ function Projects({ org, projects, handleDonate }) {
     <div className="projects">
       <h1>Projects</h1>
       <div className="projectsList">
-        {projects != null
-          ? projects.map((project, i) =>
-              project.organization == org ? (
-                <Card className="project">
-                  <Card.Body>
-                    <Card.Img
-                      className="projectImage"
-                      variant="top"
-                      src={project.Picture}
-                    />
-                    <Card.Title className="projectTitle">
-                      {project.name}
-                    </Card.Title>
+        {projects.length != 0 ? (
+          projects.map((project, i) =>
+            project.organization == org ? (
+              <Card className="project">
+                <Card.Body>
+                  <Card.Img
+                    className="projectImage"
+                    variant="top"
+                    src={project.Picture}
+                  />
+                  <Card.Title className="projectTitle">
+                    {project.name}
+                  </Card.Title>
 
-                    <Link
-                      className="details"
-                      data-index={i}
-                      onClick={somethingtwo}
-                    >
-                      details
-                    </Link>
-                    <div className="donut">
-                      <Doughnut
-                        data={{
-                          labels: ["Collected", "Remaining"],
-                          datasets: [
-                            {
-                              data: [
-                                project.amount_raised,
-                                project.amount_raised - project.cost,
-                              ],
-                              backgroundColor: ["#FF6384", "#36A2EB"],
-                              hoverBackgroundColor: ["#FF6384", "#36A2EB"],
-                            },
-                          ],
-                        }}
-                      />
-                    </div>
-                    {/* <Card.Text className="projectDescription">
+                  <Link
+                    className="details"
+                    data-index={i}
+                    onClick={somethingtwo}
+                  >
+                    details
+                  </Link>
+                  <div className="donut">
+                    <Doughnut
+                      data={{
+                        labels: ["Collected", "Remaining"],
+                        datasets: [
+                          {
+                            data: [
+                              project.amount_raised,
+                              project.amount_raised - project.cost,
+                            ],
+                            backgroundColor: ["#FF6384", "#36A2EB"],
+                            hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+                          },
+                        ],
+                      }}
+                    />
+                  </div>
+                  {/* <Card.Text className="projectDescription">
                       {project.description}
                     </Card.Text> */}
 
-                    <Button
-                      className="donateButton"
-                      onClick={(e) => something(e)}
-                      data-index={i}
-                    >
-                      Donate
-                    </Button>
-                  </Card.Body>
-                  {showDetails[i] ? (
-                    <ProjectDetailsModal
-                      i={i}
-                      somethingthree={somethingthree}
-                      handleClose={closeModaltwo}
-                      handleShut={closeModaltwo}
-                      project={project}
-                    />
-                  ) : null}
-                </Card>
-              ) : null
-            )
-          : null}
+                  <Button
+                    className="donateButton"
+                    onClick={(e) => something(e)}
+                    data-index={i}
+                  >
+                    Donate
+                  </Button>
+                </Card.Body>
+                {showDetails[i] ? (
+                  <ProjectDetailsModal
+                    i={i}
+                    somethingthree={somethingthree}
+                    handleClose={closeModaltwo}
+                    handleShut={closeModaltwo}
+                    project={project}
+                  />
+                ) : null}
+              </Card>
+            ) : null
+          )
+        ) : (
+          <Loader />
+        )}
         {showModal ? (
           <AddDonationModal
             index={i}

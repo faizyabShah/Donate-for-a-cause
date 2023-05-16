@@ -100,31 +100,6 @@ function Projectform({ setPage }) {
           />
         </Form.Group>
 
-        <Form.Group controlId="type">
-          <Form.Label>Project Type</Form.Label>
-          <Form.Control
-            as="select"
-            value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-          >
-            <option value="">Choose...</option>
-            <option value="Zakat">Zakat</option>
-            <option value="sadqa">Sadqa</option>
-          </Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="audit">
-          <Form.Label>Audit Information</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter audit information"
-            value={formData.audit}
-            onChange={(e) =>
-              setFormData({ ...formData, audit: e.target.value })
-            }
-          />
-        </Form.Group>
-
         <Form.Group controlId="picture">
           <Form.Label>Project Picture</Form.Label>
           <Form.Control
