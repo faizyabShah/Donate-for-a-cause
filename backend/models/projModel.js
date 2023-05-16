@@ -35,6 +35,12 @@ const ProjSchema = new Schema(
       },
     ],
 
+    status: {
+      type: String,
+      enum: ["Active", "Pending", "Completed"],
+      default: "Active",
+    },
+
     amount_raised: {
       type: Number,
       default: 0,
@@ -148,6 +154,9 @@ ProjSchema.statics.addDonation = async function (user_id, id, amount) {
   const proj = await this.findOne({ _id: id });
   proj.donations.push({ user_id, amount: parseInt(amount) });
   proj.amount_raised += parseInt(amount);
+  if (proj.amount_raised >= proj.cost) {
+    proj.status = "Pending";
+  }
   proj.save();
   return proj;
 };

@@ -13,6 +13,7 @@ const {
   getUserDonationsMonth,
   getUserDonationsYear,
   getUserDonationsLastFiveMonths,
+  completeProject,
 } = require("../controllers/projController");
 const authenticate = require("../middleware/authenticate");
 const { get } = require("mongoose");
@@ -53,5 +54,7 @@ router.get("/userdonationsyear", getUserDonationsYear);
 
 // get user donations of each of the last five months
 router.get("/userdonationslastfivemonths", getUserDonationsLastFiveMonths);
+
+router.put("/completeproject/:id", completeProject);
 
 module.exports = router;

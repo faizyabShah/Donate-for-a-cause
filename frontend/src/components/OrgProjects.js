@@ -16,9 +16,12 @@ const OrgProjects = ({ projects }) => {
   return (
     <div className="project-list">
       {projects != null ? (
-        projects.map((project) => (
-          <ProjectCard key={project.name} {...project} />
-        ))
+        projects.map(
+          (project) =>
+            project.amount_raised < project.cost && (
+              <ProjectCard key={project.name} {...project} />
+            )
+        )
       ) : (
         <h4>Loading...</h4>
       )}

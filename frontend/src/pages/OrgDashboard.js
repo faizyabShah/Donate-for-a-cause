@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Overview from "../components/Overview";
 import Projectform from "../components/Projectform";
 import OrgProjects from "../components/OrgProjects";
+import PendingProjects from "../components/pendingProjects";
 import { useUserContext } from "../hooks/userContextHook";
 import "./orgDashboard.scss";
 
@@ -31,7 +32,7 @@ function OrgDashboard() {
     <div className="orgDashboard">
       <Sidebar
         setPage={setPage}
-        pages={["overview", "projects", "Add project", "zakaat"]}
+        pages={["overview", "projects", "Add project", "Pending"]}
       />
       {page === "overview" ? (
         <Overview />
@@ -39,6 +40,8 @@ function OrgDashboard() {
         <Projectform setPage={setPage} />
       ) : page === "projects" ? (
         <OrgProjects projects={projects} />
+      ) : page == "pending" ? (
+        <PendingProjects projects={projects} setProjects={setProjects} />
       ) : (
         <></>
       )}

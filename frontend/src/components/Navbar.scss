@@ -95,6 +95,11 @@ header {
             display: flex;
             gap: 1rem;
             width: 250px;
+
+            .notifications-icon:hover {
+              cursor: pointer;
+
+            }
           }
           .navbar-logo {
             width: 50px;

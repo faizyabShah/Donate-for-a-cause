@@ -1,0 +1,13 @@
+.notifications {
+    display: flex;
+    flex-direction: column;
+
+    .notification {
+        display: flex;
+    }
+
+    .clear {
+        width: 30%;
+        align-self: center;
+    }
+}

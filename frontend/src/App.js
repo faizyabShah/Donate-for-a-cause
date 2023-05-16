@@ -8,11 +8,20 @@ import Donate from "./pages/Donate";
 import OrgRegister from "./pages/OrgRegister";
 import OrgDashboard from "./pages/OrgDashboard";
 import { useUserContext } from "./hooks/userContextHook";
+import { useState } from "react";
+import NotificationsModal from "./components/NotificationsModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
+  const [showNotifications, setShowNotifications] = useState(false);
   const { isLoggedIn, isOrg } = useUserContext();
+  const handleHide = () => {
+    setShowNotifications(false);
+  };
+  const handleShow = () => {
+    setShowNotifications(true);
+  };
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,6 +36,8 @@ function App() {
             !isOrg ? { path: "/about", name: "About" } : null,
             isLoggedIn ? { path: "./logout", name: "Logout" } : null,
           ]}
+          notifications={isLoggedIn && !isOrg}
+          setShowNotifications={handleShow}
         />
         <div className="pages">
           <Routes>
@@ -41,6 +52,9 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      {showNotifications && (
+        <NotificationsModal handleClose={handleHide} handleShut={handleHide} />
+      )}
     </div>
   );
 }

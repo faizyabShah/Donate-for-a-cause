@@ -34,6 +34,21 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    notifications: [
+      {
+        message: {
+          type: String,
+        },
+        project_id: {
+          type: Schema.Types.ObjectId,
+          ref: "Project",
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
   },
   { timeStamps: true }
 );

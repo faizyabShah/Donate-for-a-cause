@@ -1,4 +1,5 @@
 const { ProjModel } = require("../models/projModel");
+const { User } = require("../models/userModel");
 const mongoose = require("mongoose");
 
 // create controller functions for all the static methods in the projModel.js file
@@ -300,6 +301,36 @@ const getUserDonationsLastFiveMonths = async (req, res) => {
   }
 };
 
+const completeProject = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const project = await ProjModel.findByIdAndUpdate(id, {
+      status: "Completed",
+    });
+
+    const users = [];
+    for (donation of project.donations) {
+      try {
+        const user = await User.findById(donation.user_id);
+        users.push(user);
+      } catch (err) {
+        res.status(400).json({ msg: err.message });
+      }
+    }
+    for (user of users) {
+      user.notifications.push({
+        message: `The project ${project.name} has been completed.`,
+        project_id: project._id,
+      });
+      await user.save();
+    }
+
+    res.status(200).json({ msg: "Project completed successfully" });
+  } catch (err) {
+    return res.status(404).json({ msg: "Proj not found" });
+  }
+};
+
 module.exports = {
   getProjects,
   getProject,
@@ -313,4 +344,5 @@ module.exports = {
   getUserDonationsMonth,
   getUserDonationsYear,
   getUserDonationsLastFiveMonths,
+  completeProject,
 };
