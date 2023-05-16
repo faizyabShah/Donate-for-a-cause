@@ -3,6 +3,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+    // background-image: url('../Images/blue.jpg');
     .Footer {
         position: absolute;
         bottom: 0;
@@ -42,6 +43,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width:18rem;
             
             display: flex;
             flex-direction: column;
@@ -58,6 +60,7 @@
                 margin-bottom: 2%;
                 color: #FF4242;
                 font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
               }
           
               .card-text {
@@ -70,7 +73,9 @@
         .leftCard{
             position: absolute;
             top: 28%;
-            left: 22%;
+            left: 26%;
+            width:15rem;
+          
             transform: translate(-50%, -50%);
             height:100%;
             display: flex;
@@ -82,12 +87,20 @@
             border-radius: 1rem;
             padding:1%;
             background-color: #fff;
+            background:url('../Images/syriaKid.jpg');
+            background-size: cover;
             z-index: 1;
             .card-title {
-                font-size: 100%;
+                font-size: 200%;
                 margin-bottom: 2%;
-                color: #FF4242;
-                font-weight: bold;
+                color: #fff;
+                font-weight: 100%;
+                position: absolute;
+                top:60%;
+                right:15%;
+                left:10%;
+                
+
               }
           
               .card-text {
@@ -101,6 +114,206 @@
 
             
         }
+        .xleftCard{
+          position: absolute;
+          top:-35%;
+          left: 5%;
+          width:14rem;
+          height:20rem;
+          transform: translate(-50%, -50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          border-radius: 1rem;
+          padding:1%;
+          background-color: #fff;
+          background:url('../Images/struggle.jpg');
+          background-size: cover;
+          z-index: 1;
+          .card-title {
+              font-size: 200%;
+              margin-bottom: 2%;
+              color: #fff;
+              font-weight: 100%;
+              position: absolute;
+              top:60%;
+              right:15%;
+              left:10%;
+
+            }
+        
+            .card-text {
+              font-size: 100%;
+              margin-bottom: 2%;
+            }
+          .card-image{
+              width: 100%;
+              height:100%;
+          }
+
+          
+      }
+       
+        .rightCard{
+          position: absolute;
+          top: 28%;
+          right: 5%;
+          transform: translate(-50%, -50%);
+          height:100%;
+          display: flex;
+          width:15rem;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          border-radius: 1rem;
+          padding:1%;
+          background-color: #fff;
+          background:url('../Images/rightKid.jpg');
+        
+          background-size: cover;
+          z-index: 1;
+          .card-title {
+              font-size: 200%;
+              margin-bottom: 2%;
+              color: #fff;
+              font-weight: 100%;
+              position: absolute;
+              top:60%;
+              right:15%;
+              left:10%;
+
+            }
+        
+            .card-text {
+              font-size: 100%;
+              margin-bottom: 2%;
+            }
+          .card-image{
+              width: 100%;
+              height:100%;
+          }
+
+          
+      }
+      .xrightCard{
+        position: absolute;
+        top: -35%;
+        right: -15%;
+        width:14rem;
+        height:20rem;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 1rem;
+        padding:1%;
+        background-color: #fff;
+        background:url('../Images/helping.jpg');
+        background-size: cover;
+        z-index: 1;
+        .card-title {
+            font-size: 200%;
+            margin-bottom: 2%;
+            color: #fff;
+            font-weight: 100%;
+            position: absolute;
+            top:60%;
+            right:15%;
+            left:10%;
+
+          }
+      
+          .card-text {
+            font-size: 100%;
+            margin-bottom: 2%;
+          }
+        .card-image{
+            width: 100%;
+            height:100%;
+        }
+
+        
+    }
+    .brCard{
+      position: absolute;
+      top: 30%;
+      width:13.5rem;
+      height:8rem;
+      left:-5%;
+      background-image: url('../Images/hands.jpg');
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border-radius: 1rem;
+      padding:1%;
+      background-color: #fff;
+      z-index: 1;
+      .card-title {
+        font-size: 200%;
+            margin-bottom: 2%;
+            color: #fff;
+            font-weight: 100%;
+            position: absolute;
+            
+            right:15%;
+            left:10%;
+          
+        }
+    
+        .card-text {
+          font-size: 100%;
+          margin-bottom: 2%;
+        }
+      
+  }
+  .blCard{
+    position: absolute;
+    top: 30%;
+    width:13.5rem;
+    height:8rem;
+    right:-5%;
+    background-image: url('../Images/crying.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 1rem;
+    padding:1%;
+    background-color: #fff;
+    z-index: 1;
+    .card-title {
+          font-size: 200%;
+          color: #fff;
+          font-weight: 100%;
+          position: absolute;
+          right:15%;
+          left:10%;
+          top:60%;
+        
+      }
+  
+      .card-text {
+        font-size: 100%;
+        margin-bottom: 2%;
+      }
+    
+}
+        
 
     }
 }

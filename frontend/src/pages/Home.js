@@ -20,11 +20,28 @@ function Home() {
         className="midCard"
       />
       <CardComponent
-        title="Join us to make a difference"
-        hasImage={true}
-        imageName="kid.jpg"
-
+        title="Make a difference"
         className="leftCard"
+      />
+      <CardComponent
+        title="Change destinies"
+        className="xleftCard"
+      />
+      <CardComponent
+        title="We can."
+        className="brCard"
+      />
+      <CardComponent
+        title="Build humanity"
+        className="rightCard"
+      />
+      <CardComponent
+        title="Help.Build.Create"
+        className="xrightCard"
+      />
+      <CardComponent
+        title="Support"
+        className="blCard"
       />
       </div>
       
