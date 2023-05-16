@@ -4,6 +4,7 @@ import { useUserContext } from "../hooks/userContextHook";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProjectDetailsModal from "./ProjectDetailsModal";
+import { Doughnut } from "react-chartjs-2";
 import "./Projects.scss";
 
 function Projects({ org, projects, handleDonate }) {
@@ -63,6 +64,17 @@ function Projects({ org, projects, handleDonate }) {
     setShowDetails(arr);
   };
 
+  const chartData = {
+    labels: ["Label 1", "Label 2", "Label 3"],
+    datasets: [
+      {
+        data: [30, 50, 20],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+      },
+    ],
+  };
+
   return (
     <div className="projects">
       <h1>Projects</h1>
@@ -88,27 +100,27 @@ function Projects({ org, projects, handleDonate }) {
                     >
                       details
                     </Link>
+                    <div className="donut">
+                      <Doughnut
+                        data={{
+                          labels: ["Collected", "Remaining"],
+                          datasets: [
+                            {
+                              data: [
+                                project.amount_raised,
+                                project.amount_raised - project.cost,
+                              ],
+                              backgroundColor: ["#FF6384", "#36A2EB"],
+                              hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+                            },
+                          ],
+                        }}
+                      />
+                    </div>
                     {/* <Card.Text className="projectDescription">
                       {project.description}
                     </Card.Text> */}
-                    <div className="projectAmount">
-                      <div className="projectAmountRequired">
-                        <div className="projectAmountRequiredTitle">
-                          Amount Required
-                        </div>
-                        <div className="projectAmountRequiredAmount">
-                          {project.cost}
-                        </div>
-                      </div>
-                      <div className="projectAmountCollected">
-                        <div className="projectAmountCollectedTitle">
-                          Amount Collected
-                        </div>
-                        <div className="projectAmountCollectedAmount">
-                          {project.amount_raised}
-                        </div>
-                      </div>
-                    </div>
+
                     <Button
                       className="donateButton"
                       onClick={(e) => something(e)}

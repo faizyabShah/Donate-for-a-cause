@@ -1,13 +1,14 @@
 import React from "react";
 import "./ProjectCard.scss";
+import "./OrgProjects.scss";
 
-const ProjectCard = ({ name, description, cost, amount_raised, Picture }) => {
+const ProjectCard = ({ name, description, cost, amount_raised }) => {
   return (
     <div className="project-card">
       <h2>{name || "loading"}</h2>
-      <p>{description}</p>
-      <p>Cost: ${cost}</p>
-      <p>Amount Raised: ${amount_raised}</p>
+      <p className="description">{description}</p>
+      <p className="cost">Cost: ${cost}</p>
+      <p className="collected">Amount Raised: ${amount_raised}</p>
     </div>
   );
 };

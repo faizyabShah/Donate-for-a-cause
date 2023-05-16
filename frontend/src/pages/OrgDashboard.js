@@ -27,16 +27,14 @@ function OrgDashboard() {
     }
   }, [user]);
 
-  const [page, setPage] = useState("overview");
+  const [page, setPage] = useState("projects");
   return (
     <div className="orgDashboard">
       <Sidebar
         setPage={setPage}
-        pages={["overview", "projects", "Add project", "Pending"]}
+        pages={["projects", "Add project", "Pending"]}
       />
-      {page === "overview" ? (
-        <Overview />
-      ) : page === "add project" ? (
+      {page === "add project" ? (
         <Projectform setPage={setPage} />
       ) : page === "projects" ? (
         <OrgProjects projects={projects} />

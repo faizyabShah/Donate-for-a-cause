@@ -9,6 +9,10 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
+
+    .details {
+      margin-bottom: 1rem;
+    }
   
     .projectsList {
       display: flex;
@@ -29,6 +33,11 @@
         border-radius: 10px;
         background-color: #fff;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        .donut {
+          width: 90%;
+          margin-bottom: 1.2rem;
+        }
 
         .projectImage {
           margin-bottom: 1rem;
