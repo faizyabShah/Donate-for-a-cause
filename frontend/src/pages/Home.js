@@ -20,12 +20,28 @@ function Home() {
         className="midCard"
       />
       <CardComponent
-        title="make a difference"
+        title="Make a difference"
         className="leftCard"
       />
       <CardComponent
-        title="build humanity"
+        title="Change destinies"
+        className="xleftCard"
+      />
+      <CardComponent
+        title="We can."
+        className="brCard"
+      />
+      <CardComponent
+        title="Build humanity"
         className="rightCard"
+      />
+      <CardComponent
+        title="Help.Build.Create"
+        className="xrightCard"
+      />
+      <CardComponent
+        title="Support"
+        className="blCard"
       />
       </div>
       

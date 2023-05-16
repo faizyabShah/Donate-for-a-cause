@@ -3,7 +3,7 @@ import './CardComponent.scss';
 
 function CardComponent(props) {
   return (
-    <Card style={{ width: '18rem', border: "none" }} {...props}>
+    <Card style={{ border: "none" }} {...props}>
       {props.hasImage ? (<Card.Img variant="top" src={`../Images/${props.imageName}`} />) : null}
       
       <Card.Body>
