@@ -71,6 +71,7 @@
             position: absolute;
             top: 28%;
             left: 22%;
+          
             transform: translate(-50%, -50%);
             height:100%;
             display: flex;
@@ -82,12 +83,19 @@
             border-radius: 1rem;
             padding:1%;
             background-color: #fff;
+            background:url('../Images/syriaKid.jpg');
+            background-size: cover;
             z-index: 1;
             .card-title {
-                font-size: 100%;
+                font-size: 200%;
                 margin-bottom: 2%;
-                color: #FF4242;
-                font-weight: bold;
+                color: #fff;
+                font-weight: 100%;
+                position: absolute;
+                top:60%;
+                right:15%;
+                left:10%;
+
               }
           
               .card-text {
@@ -101,6 +109,50 @@
 
             
         }
+       
+        .rightCard{
+          position: absolute;
+          top: 28%;
+          right: -5%;
+          transform: translate(-50%, -50%);
+          height:100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          border-radius: 1rem;
+          padding:1%;
+          background-color: #fff;
+          background:url('../Images/rightKid.jpg');
+        
+          background-size: cover;
+          z-index: 1;
+          .card-title {
+              font-size: 200%;
+              margin-bottom: 2%;
+              color: #fff;
+              font-weight: 100%;
+              position: absolute;
+              top:60%;
+              right:15%;
+              left:10%;
+
+            }
+        
+            .card-text {
+              font-size: 100%;
+              margin-bottom: 2%;
+            }
+          .card-image{
+              width: 100%;
+              height:100%;
+          }
+
+          
+      }
+        
 
     }
 }
