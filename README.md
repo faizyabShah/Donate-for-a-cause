@@ -88,7 +88,11 @@ Test your changes thoroughly.
 ### Screenshots
 
 - Home page:
+![image](https://github.com/faizyabShah/Donate-for-a-cause/assets/101542222/c60cb9d5-3279-4beb-a113-f8ab81640d42)
+
+- Organizations adding projects:
 ![Uploading image.png…]()
+
 
 
 We hope this system helps make a positive impact by facilitating donations for various worthy causes. Thank you for using Donate-for-a-cause to contribute to meaningful projects!
