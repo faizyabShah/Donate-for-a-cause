@@ -93,6 +93,9 @@ Test your changes thoroughly.
 - Organizations adding projects:
 ![Uploading image.png…]()
 
+- Organizations' projects: (user view)
+![Uploading image.png…]()
+
 
 
 We hope this system helps make a positive impact by facilitating donations for various worthy causes. Thank you for using Donate-for-a-cause to contribute to meaningful projects!
