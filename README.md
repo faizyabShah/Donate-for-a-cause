@@ -99,6 +99,10 @@ Test your changes thoroughly.
 - Projects details page:
 ![Uploading image.png…]()
 
+- User dashboard:
+![Uploading image.png…]()
+
+
 
 
 
