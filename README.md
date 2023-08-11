@@ -24,25 +24,25 @@ git clone https://github.com/faizyabShah/Donate-for-a-cause.git
 
 cd Donate-for-a-cause
 
-- Install the required dependencies:
+### Install the required dependencies:
 
-navigate to the frontend folder with:
+- navigate to the frontend folder with:
 
 cd frontend
 
-and run:
+- and run:
 
 npm install
 
-similarly, navigate to the backend folder with:
+- similarly, navigate to the backend folder with:
 
 npm backend
 
-and run:
+- and run:
 
 npm install
 
-Configure environment variables:
+- Configure environment variables:
 
 Create a .env file in the project root and provide the following variables:
 
@@ -50,25 +50,31 @@ PORT=5000
 MONGODB_URI=your_mongodb_connection_url
 SECRET_KEY=anysecretkey
 
-Start the application:
-bash
-Copy code
+### Start the application:
+- In frontend directory, run:
+- 
 npm start
-The application should now be running at http://localhost:3000.
 
-Usage
-User Roles
-User: Users can explore listed projects, view donation progress, contribute donations, and monitor project completion status.
+-In backend directory, run:
+
+node server.js
+
+## Usage
+### User Roles
+#### User: 
+Users can explore listed projects, view donation progress, contribute donations, and monitor project completion status.
 Organization: Organizations can sign up, log in, and list their projects, along with their funding goals and descriptions.
-Features
-Browse Projects: Users can view a list of projects listed by various organizations.
-Project Details: Users can access detailed information about a specific project, including its description, donation progress, and completion status.
-Donate: Users can contribute donations to ongoing projects.
-User Authentication: Secure user authentication and authorization for organizations and users.
-Organization Dashboard: Organizations can log in and access a dashboard to manage their listed projects.
-Project Creation: Organizations can create, edit, and delete their projects, specifying funding goals and descriptions.
-Admin Panel: Admin users can monitor and manage organizations, projects, and user activities.
-Contributing
+#### Features:
+- Browse Projects: Users can view a list of projects listed by various organizations.
+- Project Details: Users can access detailed information about a specific project, including its description, donation progress, and completion status.
+- Donate: Users can contribute donations to ongoing projects.
+- User Authentication: Secure user authentication and authorization for organizations and users.
+- Organization Dashboard: Organizations can log in and access a dashboard to manage their listed projects.
+- Project Creation: Organizations can create, edit, and delete their projects, specifying funding goals and descriptions.
+- Admin Panel: Admin users can monitor and manage organizations, projects, and user activities.
+
+
+### Contributing
 Contributions to Donate-for-a-cause are welcome! If you find any issues or have suggestions for improvements, please feel free to submit an issue or create a pull request.
 
 When contributing code, please ensure the following:
@@ -76,7 +82,5 @@ When contributing code, please ensure the following:
 Follow the existing code style and structure.
 Include relevant comments and documentation.
 Test your changes thoroughly.
-License
-This project is licensed under the MIT License.
 
 We hope this system helps make a positive impact by facilitating donations for various worthy causes. Thank you for using Donate-for-a-cause to contribute to meaningful projects!
