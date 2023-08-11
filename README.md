@@ -63,7 +63,8 @@ node server.js
 ### User Roles
 #### User: 
 Users can explore listed projects, view donation progress, contribute donations, and monitor project completion status.
-#### Organization: Organizations can sign up, log in, and list their projects, along with their funding goals and descriptions.
+#### Organization: 
+Organizations can sign up, log in, and list their projects, along with their funding goals and descriptions.
 #### Features:
 - Browse Projects: Users can view a list of projects listed by various organizations.
 - Project Details: Users can access detailed information about a specific project, including its description, donation progress, and completion status.
