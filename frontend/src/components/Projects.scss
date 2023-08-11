@@ -20,6 +20,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
+      width: 100%;
   
       .project {
         display: flex;
@@ -27,6 +28,7 @@
         justify-content: center;
         align-items: center;
         width: 30%;
+        min-width: 30%;
         border: none;
         height: auto;
         padding: 1rem;

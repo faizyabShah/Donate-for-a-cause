@@ -1,19 +1,14 @@
-###Donate-for-a-cause
+### Donate-for-a-cause
 Welcome to the Donate-for-a-cause project! This system is designed to facilitate donations for various projects listed by organizations. Users can explore projects, contribute donations, track the progress of projects, and stay informed about their completion status. Organizations can also utilize this platform to sign up and showcase their projects to receive support from users.
 
-Donate-for-a-cause
+## Table of Contents
+- Getting Started
+- - Prerequisites
+- - Installation
+- Features
 
-Table of Contents
-Getting Started
-Prerequisites
-Installation
-Usage
-User Roles
-Features
-Contributing
-License
-Getting Started
-Prerequisites
+## Getting Started
+# Prerequisites
 Before you begin, ensure you have the following prerequisites:
 
 Node.js and npm (Node Package Manager)
