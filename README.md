@@ -6,6 +6,7 @@ Welcome to the Donate-for-a-cause project! This system is designed to facilitate
 - - Prerequisites
 - - Installation
 - Features
+- Screenshots
 
 ## Getting Started
 ### Prerequisites
@@ -83,5 +84,11 @@ When contributing code, please ensure the following:
 Follow the existing code style and structure.
 Include relevant comments and documentation.
 Test your changes thoroughly.
+
+### Screenshots
+
+- Home page:
+![Uploading image.png…]()
+
 
 We hope this system helps make a positive impact by facilitating donations for various worthy causes. Thank you for using Donate-for-a-cause to contribute to meaningful projects!
