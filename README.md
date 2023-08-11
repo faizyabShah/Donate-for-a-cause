@@ -1,4 +1,4 @@
-### Donate-for-a-cause
+# Donate-for-a-cause
 Welcome to the Donate-for-a-cause project! This system is designed to facilitate donations for various projects listed by organizations. Users can explore projects, contribute donations, track the progress of projects, and stay informed about their completion status. Organizations can also utilize this platform to sign up and showcase their projects to receive support from users.
 
 ## Table of Contents
@@ -8,24 +8,31 @@ Welcome to the Donate-for-a-cause project! This system is designed to facilitate
 - Features
 
 ## Getting Started
-# Prerequisites
+### Prerequisites
 Before you begin, ensure you have the following prerequisites:
 
-Node.js and npm (Node Package Manager)
-MongoDB instance or connection URL
-GitHub account (for cloning the repository and interacting with issues)
-Installation
-Clone the repository:
-bash
-Copy code
+- Node.js and npm (Node Package Manager)
+- MongoDB instance or connection URL
+- GitHub account (for cloning the repository and interacting with issues)
+
+### Installation
+- Clone the repository:
+
 git clone https://github.com/faizyabShah/Donate-for-a-cause.git
-Navigate to the project directory:
-bash
-Copy code
+
+- Navigate to the project directory:
+
 cd Donate-for-a-cause
-Install the required dependencies:
-bash
-Copy code
+
+- Install the required dependencies:
+
+navigate to the frontend folder with:
+cd frontend
+and run:
+npm install
+similarly, navigate to the backend folder with:
+npm backend
+and run:
 npm install
 Configure environment variables:
 Create a .env file in the project root and provide the following variables:
