@@ -27,20 +27,29 @@ cd Donate-for-a-cause
 - Install the required dependencies:
 
 navigate to the frontend folder with:
+
 cd frontend
+
 and run:
+
 npm install
+
 similarly, navigate to the backend folder with:
+
 npm backend
+
 and run:
+
 npm install
+
 Configure environment variables:
+
 Create a .env file in the project root and provide the following variables:
 
-makefile
-Copy code
-PORT=3000
+PORT=5000
 MONGODB_URI=your_mongodb_connection_url
+SECRET_KEY=anysecretkey
+
 Start the application:
 bash
 Copy code
