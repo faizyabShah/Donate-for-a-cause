@@ -34,7 +34,7 @@ const OrgRegister = function () {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="registration">
         <div className="form-group">
           <label for="name">Name</label>
           <input
@@ -111,7 +111,7 @@ const OrgRegister = function () {
             }
           />
         </div>
-        <button disabled={isLoading} type="submit" className="btn btn-primary">
+        <button disabled={isLoading} type="submit" className="btn btn-primary regbtn">
           Register
         </button>
         {error ? <p>{error}</p> : null}

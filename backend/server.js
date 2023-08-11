@@ -15,14 +15,6 @@ const app = express();
 //middleware
 
 app.use(express.json());
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   next();
-// });
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -34,6 +26,7 @@ app.use(
     ],
   })
 );
+//localhost:5000/api/user/clearnotificatios
 app.use("/api/user", userRoute);
 app.use("/api/organization", orgRoute);
 app.use("/api/projects", projRoute);

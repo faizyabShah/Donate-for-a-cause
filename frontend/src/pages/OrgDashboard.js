@@ -10,6 +10,7 @@ import "./orgDashboard.scss";
 function OrgDashboard() {
   const [projects, setProjects] = useState();
   const { token, user } = useUserContext();
+
   useEffect(() => {
     const fetchProjects = async () => {
       const url = "http://localhost:5000/api/projects/organization/";

@@ -34,7 +34,7 @@ const Donations = () => {
         </tr>
       </thead>
       <tbody>
-        {projects != null
+        {(projects !== null || projects.length !== 0) && user
           ? projects.map((project) =>
               project.donations.map(
                 (donation) =>

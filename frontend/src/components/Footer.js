@@ -7,7 +7,7 @@ function Footer() {
       <Container fluid className="footer">
         <Row>
           <Col md="6">
-            <p>&copy; 2023 All rights reserved with 🎢✨rollercoaster co.</p>
+            <p>&copy; 2023 All rights reserved with faiz inc.</p>
           </Col>
         </Row>
       </Container>
